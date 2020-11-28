@@ -1,7 +1,11 @@
-class Player:
-    def __init___(texture,terrain,pos,speed,maxhealth):
-        self.texture=texture
-        self.pos=pos
+import pygame
+from game_config import *
+
+class Player(pygame.sprite.Sprite):
+    def __init__(self,texture,tx,ty,x,speed,maxhealth):
+        pygame.sprite.Sprite.__init__(self)
+        self.texture=pygame.image.load(texture)
+        self.rect=pygame.Rect(x,GameConfig.player_yspawn,GameConfig.PLAYER_W,GameConfig.PLAYER_H)
         self.speed=speed
         self.maxhealth=maxhealth
 
