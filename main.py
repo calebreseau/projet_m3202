@@ -19,6 +19,9 @@ def game_loop(window):   ## ici ajouter aussi en lien avec game config un ecran 
             if event.type == pygame.QUIT:
                 quitting = True
         game_state.kb_input()
+
+        
+
         game_state.draw(window)
         pygame.time.delay(20)
 

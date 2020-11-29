@@ -22,7 +22,6 @@ class Zone_neutre :
 		scroll()
 		update_bonus(speed)
 		generate_bonus()
-		draw()
 
 
 	def generate_bonus(self) :
