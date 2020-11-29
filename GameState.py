@@ -11,7 +11,7 @@ class GameState:   ## ajouter les differents ecrans possibles
         self.players.append(player)
         print(self.players.count)
 
-        zone = Zone_neutre(GameConfig.zonex1,GameConfig.zoney1,GameConfig.zonex2,GameConfig.zoney2,87,window)
+        self.zone = Zone_neutre(GameConfig.zonex1,GameConfig.zoney1,GameConfig.zonex2,GameConfig.zoney2,87,window)
 
     def draw_sprites(self,window):
         for player in self.players:
@@ -23,13 +23,9 @@ class GameState:   ## ajouter les differents ecrans possibles
             self.players[0].stepLeft()
         if keys[pygame.K_RIGHT]:
             self.players[0].stepRight()
-        #if event.key == pygame.K_LEFT:
-        #    self.players[0].stepLeft()
-        #if event.key == pygame.K_RIGHT:
-        #    self.players[0].stepRight()
                 
     def draw(self,window):
         background = pygame.Surface((800,600))
         ##pygame.display.update()
+        self.zone.draw()
         self.draw_sprites(window)
-        #zone.update()
