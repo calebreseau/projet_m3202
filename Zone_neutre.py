@@ -33,6 +33,7 @@ class Zone_neutre :
 			self.time_before_next_bonus = expovariate(1 / self.average_time_between_bonus)
 
 
+
 	def generate_bonus(self) :
 		      ##a modifier, genere les bonus 0.17 par tic
 		bonus = Bonus(GameConfig.bonus_spawn_X, GameConfig.bonus_spawn_ymin, GameConfig.bonus_spawn_ymax, 3, self, self.window)
