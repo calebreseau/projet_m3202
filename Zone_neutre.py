@@ -1,5 +1,6 @@
 from random import *
 from game_config import *
+from Bonus import *
 import pygame
 class Zone_neutre :
 	
@@ -13,29 +14,32 @@ class Zone_neutre :
 		self.speed = 1
 		#image = pygame.image.load('img/tapis_roulant.png')
 		self.image=pygame.Surface((self.x2,self.y2))
-		pygame.draw.rect(self.image,(75,90,80),(self.x1,self.y1,self.x2,self.y2))
+		pygame.draw.rect(self.image,(75,90,80),(0,0,self.x2,self.y2))
 		self.window = Window
 
 		self.all_bonus = []
 
 	def update(self) :
-		scroll()
-		#update_bonus(speed)
-		#generate_bonus()
+		self.scroll()
+		self.update_bonus()
+		self.generate_bonus()
 
 
 	def generate_bonus(self) :
-		if(randint(0,100)>93) :      ##a modifier, genere les bonus 0.17 par tic
-			all_bonus.add(Bonus(X2+20, y1, y2, 3, self, window))
+		if(randint(0,100)>98) :      ##a modifier, genere les bonus 0.17 par tic
+			bonus = Bonus(GameConfig.bonus_spawn_X, GameConfig.bonus_spawn_ymin, GameConfig.bonus_spawn_ymax, 3, self, self.window)
+			self.all_bonus.append(bonus)
 
-	def update_bonus(speed ) :
-		for i in all_bonus :
-			all_bonus[i].update()
-			if i.X < x1 :
-				all_bonus[i] = null
+	def update_bonus(self) :
+		for i in self.all_bonus :
+			i.update()
+			if i.X < self.x1 :
+				self.all_bonus.remove(i)
 	def scroll(self) :
-		imageX-=speed
-		if x1 > imageX + 2*image_step :
-			imageX+=image_step
+		self.imageX-=self.speed
+		if self.x1 > self.imageX + 2* self.image_step :
+			self.imageX+=self.image_step
 	def draw(self) :
 		self.window.blit(self.image,(self.imageX,self.y1))
+		for i in self.all_bonus :
+			i.draw()

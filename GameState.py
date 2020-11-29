@@ -10,7 +10,7 @@ class GameState:   ## ajouter les differents ecrans possibles
         self.players=[]
         player=Player(tx,ty,pos,GameConfig.playerspeed,100)
         self.players.append(player)
-        print(self.players.count)
+
         player=Bot(tx,ty,pos,GameConfig.playerspeed,100,self.players[0])
         self.players.append(player)
 
@@ -27,7 +27,7 @@ class GameState:   ## ajouter les differents ecrans possibles
         if keys[pygame.K_RIGHT]:
             self.players[0].stepRight()
     def update(self) :
-        #zone.update()
+        self.zone.update()
         self.players[1].update()
                 
     def draw(self,window):

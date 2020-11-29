@@ -5,7 +5,7 @@ class GameConfig:
     WINDOW_H = 600
     PLAYER_W = 32
     PLAYER_H = 32
-    playerspeed = 20
+    playerspeed = 5
     zonex1 = 0
     zonex2 = WINDOW_W
     zoney1 = 150
@@ -13,6 +13,11 @@ class GameConfig:
 
     player_yspawn = zoney1 + zoney2
     ennemy_yspawn = zoney1-PLAYER_H
+
+    bonus_size = 46
+    bonus_spawn_X = WINDOW_W + bonus_size
+    bonus_spawn_ymin = zoney1 + bonus_size
+    bonus_spawn_ymax = zoney2 - bonus_size
 
 
 
