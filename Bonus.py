@@ -6,7 +6,7 @@ class Bonus :
 		type = randint(0,typeMax)
 		zone_neutre = Zone_neutre
 		window = Window
-		image = pygame.image.load("image" + type + ".png")
+		image = pygame.image.load("image" + type + ".png")      # a modifier en fonction des images
 	def update() :
 		speed = zone_neutre.speed
 		moove(speed)
