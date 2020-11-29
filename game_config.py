@@ -6,7 +6,11 @@ class GameConfig:
     PLAYER_W = 64
     PLAYER_H = 64
     player_yspawn = 320
-    playerspeed=20
+    playerspeed = 20
+    zonex1 = 0
+    zonex2 = WINDOW_W
+    zoney1 = 150
+    zoney2 = 450
 
 
 
