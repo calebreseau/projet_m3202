@@ -25,9 +25,25 @@ class GameState:   ## ajouter les differents ecrans possibles
     def get_ennemies(self,typeennemies):
         ennemies=[]
         for player in self.players:
-            if type(player) is typeennemies:
+            if isinstance(player,typeennemies):
                 ennemies.append(player)
         return ennemies
+
+    def update_collisions(self):
+        for player in self.players:
+            if isinstance(player,PlayerDown):
+                ennemies=self.get_ennemies(PlayerUp)
+            if isinstance(player,PlayerUp):
+                ennemies=self.get_ennemies(PlayerDown)
+            for proj in player.projs:
+                #print(str(proj.rect.x)+','+str(proj.rect.y))
+                for ennemy in ennemies:
+                    print(str(ennemy.rect.x)+','+str(ennemy.rect.y))
+                    if ennemy.rect.colliderect(proj.rect):
+                        print('collide')
+                        ennemy.attack(GameConfig.proj_damage)
+                        print(str(ennemy.health))
+                        player.projs.remove(proj)
 
     def update(self) :
         self.draw()
@@ -37,6 +53,7 @@ class GameState:   ## ajouter les differents ecrans possibles
                 player.update(self.get_ennemies(PlayerDown))
             else:
                 player.update()
+        self.update_collisions()
                 
     def draw(self):
         background = pygame.Surface((800,600))

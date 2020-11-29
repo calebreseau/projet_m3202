@@ -14,11 +14,20 @@ class Player(pygame.sprite.Sprite):    # player doit aussi posseder un set de vi
         self.shoot_timer=0
         self.speed=GameConfig.playerspeed
         self.maxhealth=GameConfig.player_maxhealth
+        self.health=self.maxhealth
         self.projs=[]
         self.projspeed=GameConfig.player_projspeed
         self.vx=GameConfig.player_vx
+        self.texture=pygame.Surface((GameConfig.PLAYER_W,GameConfig.PLAYER_H))
+        pygame.draw.rect(self.texture,(80,80,80),(0,0,GameConfig.PLAYER_W,GameConfig.PLAYER_H))
         self.init_specs()
         self.window=window
+
+    def attack(self,power):
+        self.health-=power
+    
+    def heal(self,power):
+        self.health+=power
 
     def init_specs(self):
         self=self
@@ -38,9 +47,8 @@ class Player(pygame.sprite.Sprite):    # player doit aussi posseder un set de vi
 
     def update_projs(self):
         for proj in self.projs:
-            if proj.lifetime<GameConfig.proj_lifetime:
-                proj.update()
-            else:
+            proj.update()
+            if proj.isdead:
                 self.projs.remove(proj)
 
     def update(self):
@@ -56,4 +64,9 @@ class Player(pygame.sprite.Sprite):    # player doit aussi posseder un set de vi
         self.draw()
 
     def draw(self):
-        self.window.blit(self.texture,(self.rect.x,self.rect.y))
+        healthtexture=self.texture
+        healthwidth=round(GameConfig.PLAYER_W*self.health/self.maxhealth)
+        pygame.draw.rect(healthtexture,self.color,(0,0,healthwidth,GameConfig.PLAYER_H))
+        pygame.draw.rect(healthtexture,(80,80,80),(healthwidth,0,GameConfig.PLAYER_W-healthwidth,GameConfig.PLAYER_H))
+        #pygame.draw.rect(healthtexture,self.color,(0,0,32,GameConfig.PLAYER_H))
+        self.window.blit(healthtexture,(self.rect.x,self.rect.y))

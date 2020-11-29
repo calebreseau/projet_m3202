@@ -4,6 +4,7 @@ from game_config import *
 class Projectile(pygame.sprite.Sprite) :
     def __init__(self, player, vx, vy, Size, Speed,window) :
         pygame.sprite.Sprite.__init__(self)
+        self.isdead=False
         self.window=window
         self.lifetime=0
         self.rect=pygame.Rect(player.rect.x,player.rect.y,Size,Size)
@@ -18,6 +19,8 @@ class Projectile(pygame.sprite.Sprite) :
         self.move()
         self.draw()
         self.lifetime+=1
+        if self.lifetime>GameConfig.proj_lifetime:
+            self.isdead=True
 
     def move(self) :
         self.rect.x += self.VX * self.speed
