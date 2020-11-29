@@ -23,6 +23,7 @@ class Zone_neutre :
 		self.scroll()
 		self.update_bonus()
 		self.generate_bonus()
+		self.draw()
 
 
 	def generate_bonus(self) :

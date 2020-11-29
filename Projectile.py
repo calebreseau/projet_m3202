@@ -2,23 +2,29 @@ import pygame
 from game_config import *
 
 class Projectile(pygame.sprite.Sprite) :
-    def __init__(self, player, vx, vy, Size, Speed) :
+    def __init__(self, player, vx, vy, Size, Speed,window) :
         pygame.sprite.Sprite.__init__(self)
-        X = player.pos.x
-        Y = player.pos.y
-        VX = vx
-        VY = vy
-        size = Size
-        speed = Speed
+        self.window=window
+        self.lifetime=0
+        self.rect=pygame.Rect(player.rect.x,player.rect.y,Size,Size)
+        self.VX = vx
+        self.VY = vy
+        self.size = Size
+        self.speed = Speed
+        self.texture=pygame.Surface((Size,Size))
+        pygame.draw.rect(self.texture,(255,255,255),(0,0,Size,Size))
+
     def update(self) :
-        moove()
-        draw()
-    def moove(self) :
-        X += VX * speed
-        Y += VY * speed
+        self.move()
+        self.draw()
+        self.lifetime+=1
+
+    def move(self) :
+        self.rect.x += self.VX * self.speed
+        self.rect.y += self.VY * self.speed
+
     def draw(self) :
-        self.fill("red")
-        self.rect=pygame.Rect(X,Y,size,size)     #a modifier, utiliser des images
+        self.window.blit(self.texture, (self.rect.x,self.rect.y))
 
 
 
