@@ -10,8 +10,8 @@ class Player(pygame.sprite.Sprite):    # player doit aussi posseder un set de vi
         self.speed=speed
         self.maxhealth=maxhealth
 
-    def stepLeft():
-        self.rect.pos.x-=1
+    def stepLeft(self):
+        self.rect.x-=self.speed
 
-    def stepRight():
-        self.rect.pos.x+=1
+    def stepRight(self):
+        self.rect.x+=self.speed

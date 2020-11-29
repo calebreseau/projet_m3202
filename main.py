@@ -8,26 +8,20 @@ from Bonus import *
 
 def game_loop(window):   ## ici ajouter aussi en lien avec game config un ecran de menu et un ecran de choix des personnages
     quitting=False
-    while not quitting:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                quitting = True
+
     tx=0
     ty=0
     game_state=GameState(tx,ty,window)
-    game_state.draw(window)
-    pygame.display.update()
-    pygame.time.delay(20)
 
-def kb_input():
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit(); #sys.exit() if sys is imported
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
-                players[0].stepLeft()
-            if event.key == pygame.K_RIGHT:
-                players[0].stepRight()
+    while not quitting:
+        pygame.display.update()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                quitting = True
+        game_state.kb_input()
+        game_state.draw(window)
+        pygame.time.delay(20)
+
 
 def main():   
     pygame.init()

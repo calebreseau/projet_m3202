@@ -6,6 +6,7 @@ class GameConfig:
     PLAYER_W = 128
     PLAYER_H = 128
     player_yspawn = 320
+    playerspeed=20
 
 
 
