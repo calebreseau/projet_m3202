@@ -1,4 +1,5 @@
 from random import *
+from game_config import *
 import pygame
 class Zone_neutre :
 	
@@ -10,7 +11,8 @@ class Zone_neutre :
 		imageX = X1
 		image_step = img_step
 		speed = 1
-		image = pygame.image.load('img/tapis_roulant.png')
+		#image = pygame.image.load('img/tapis_roulant.png')
+		pygame.draw.rect(image,(75,90,80),(x1,y1,x2,y2))
 		window = Window
 
 		all_bonus = []

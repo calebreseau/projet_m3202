@@ -30,15 +30,6 @@ class GameState:   ## ajouter les differents ecrans possibles
                 
     def draw(self,window):
         background = pygame.Surface((800,600))
-        #### Create a surface with the same size as the window ####
-
-        #### Populate the surface with objects to be displayed ####
-        pygame.draw.rect(background,(0,255,255),(20,20,40,40))
-        pygame.draw.rect(background,(255,0,255),(120,120,50,50))
-        #### Populate the surface with objects to be displayed ####
-
-        #### Blit the surface onto the canvas ####
-        window.blit(background,(0,0))
         ##pygame.display.update()
         self.draw_sprites(window)
         #zone.update()
