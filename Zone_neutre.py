@@ -26,14 +26,14 @@ class Zone_neutre :
 	def update(self) :
 		self.scroll()
 		self.update_bonus()
-		self.generate_bonus()
-		self.draw()
 
 		if (time.time() - self.time_since_last_bonus > self.time_before_next_bonus) :
 			self.generate_bonus()
 			self.time_since_last_bonus = time.time()
 			self.time_before_next_bonus = expovariate(1 / self.average_time_between_bonus)
 
+		self.generate_bonus()
+		self.draw()
 
 
 	def generate_bonus(self) :
