@@ -12,6 +12,7 @@ class GameConfig:
     zoney2 = 300
 
     player_yspawn = zoney1 + zoney2
+    ennemy_yspawn = zoney1-PLAYER_H
 
 
 

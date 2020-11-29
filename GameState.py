@@ -1,4 +1,5 @@
 from Player import *
+from bot import *
 from Zone_neutre import *
 from bot import *
 from game_config import *
@@ -7,10 +8,10 @@ class GameState:   ## ajouter les differents ecrans possibles
     def __init__(self,tx,ty, window):
         pos=300
         self.players=[]
-        player=Player('red.png',tx,ty,pos,GameConfig.playerspeed,100)
+        player=Player(tx,ty,pos,GameConfig.playerspeed,100)
         self.players.append(player)
         print(self.players.count)
-        player=Bot(tx,ty,pos,GameConfig.playerspeed,100)
+        player=Bot(tx,ty,pos,GameConfig.playerspeed,100,self.players[0])
         self.players.append(player)
 
         self.zone = Zone_neutre(GameConfig.zonex1,GameConfig.zoney1,GameConfig.zonex2,GameConfig.zoney2,87,window)
@@ -26,10 +27,12 @@ class GameState:   ## ajouter les differents ecrans possibles
         if keys[pygame.K_RIGHT]:
             self.players[0].stepRight()
     def update(self) :
-        zone.update()
+        #zone.update()
+        self.players[1].update()
                 
     def draw(self,window):
         background = pygame.Surface((800,600))
-        ##pygame.display.update()
+        pygame.draw.rect(background,(0,0,0),(0,0,GameConfig.WINDOW_W,GameConfig.WINDOW_H))
+        window.blit(background,(0,0))
         self.zone.draw()
         self.draw_sprites(window)

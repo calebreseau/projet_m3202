@@ -14,16 +14,16 @@ def game_loop(window):   ## ici ajouter aussi en lien avec game config un ecran 
     game_state=GameState(tx,ty,window)
 
     while not quitting:
-        pygame.display.flip()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 quitting = True
         game_state.kb_input()
 
         
-
+        game_state.update()
         game_state.draw(window)
         pygame.time.delay(20)
+        pygame.display.update()
 
 
 def main():   
