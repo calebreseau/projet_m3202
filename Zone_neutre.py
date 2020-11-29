@@ -1,4 +1,5 @@
 from random import *
+import pygame
 class Zone_neutre :
 	
 	def __init__ (self,X1,Y1,X2,Y2,img_step,Window) :
@@ -12,7 +13,7 @@ class Zone_neutre :
 		image = pygame.image.load('img/tapis_roulant.png')
 		window = Window
 
-		all_bonus.array(Bonus[50])
+		all_bonus = []
 
 	def update(self) :
 		scroll()
