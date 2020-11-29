@@ -1,7 +1,7 @@
 from Player import *
 from Zone_neutre import *
 
-import game_config
+from game_config import *
 class GameState:   ## ajouter les differents ecrans possibles
     
     def __init__(self,tx,ty, window):
@@ -11,7 +11,7 @@ class GameState:   ## ajouter les differents ecrans possibles
         self.players.append(player)
         print(self.players.count)
 
-        zone = Zone_neutre(zonex1,zoney1,zonex2,zoney2,87,window)
+        zone = Zone_neutre(GameConfig.zonex1,GameConfig.zoney1,GameConfig.zonex2,GameConfig.zoney2,87,window)
 
     def draw_sprites(self,window):
         for player in self.players:
