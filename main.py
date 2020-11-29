@@ -16,6 +16,8 @@ def game_loop(window):   ## ici ajouter aussi en lien avec game config un ecran 
     ty=0
     game_state=GameState(tx,ty,window)
     game_state.draw(window)
+    pygame.display.update()
+    pygame.time.delay(20)
 
 def kb_input():
     for event in pygame.event.get():
