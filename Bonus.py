@@ -5,7 +5,7 @@ from game_config import *
 class Bonus :
 	def __init__ (self,x,ymin,ymax,typeMax,Zone_neutre,Window) :
 		self.X = x
-		self.Y = normalvariate((ymin+ymax)/2,10)
+		self.Y = normalvariate(300,60)
 		self.type = randint(0,typeMax)
 		self.zone_neutre = Zone_neutre
 		self.window = Window

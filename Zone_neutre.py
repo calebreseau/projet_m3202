@@ -3,6 +3,7 @@ from game_config import *
 from Bonus import *
 import pygame
 import time
+from game_config import *
 
 class Zone_neutre :
 	
@@ -21,18 +22,18 @@ class Zone_neutre :
 
 		self.all_bonus = []
 		self.time_since_last_bonus = time.time()
-		self.average_time_between_bonus = 4
+		self.average_time_between_bonus = GameConfig.bonus_average_time_between_bonus
 		self.time_before_next_bonus = expovariate(1 / self.average_time_between_bonus)
+
 	def update(self) :
 		self.scroll()
 		self.update_bonus()
 
-		if (time.time() - self.time_since_last_bonus > self.time_before_next_bonus) :
+		if(time.time() - self.time_since_last_bonus > self.time_before_next_bonus) :
 			self.generate_bonus()
 			self.time_since_last_bonus = time.time()
 			self.time_before_next_bonus = expovariate(1 / self.average_time_between_bonus)
 
-		self.generate_bonus()
 		self.draw()
 
 

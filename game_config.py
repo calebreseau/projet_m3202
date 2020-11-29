@@ -35,6 +35,7 @@ class GameConfig:
     bonus_spawn_X = WINDOW_W + bonus_size
     bonus_spawn_ymin = zoney1 + bonus_size
     bonus_spawn_ymax = zoney2 - bonus_size
+    bonus_average_time_between_bonus = 7
 
 
 
