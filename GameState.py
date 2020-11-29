@@ -1,6 +1,6 @@
 from Player import *
 from Zone_neutre import *
-
+from bot import *
 from game_config import *
 class GameState:   ## ajouter les differents ecrans possibles
     
