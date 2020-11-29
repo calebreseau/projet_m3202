@@ -2,6 +2,8 @@ from random import *
 from game_config import *
 from Bonus import *
 import pygame
+import time
+
 class Zone_neutre :
 	
 	def __init__ (self,X1,Y1,X2,Y2,img_step,Window) :
@@ -18,17 +20,23 @@ class Zone_neutre :
 		self.window = Window
 
 		self.all_bonus = []
-
+		self.time_since_last_bonus = time.time()
+		self.average_time_between_bonus = 4
+		self.time_before_next_bonus = expovariate(1 / self.average_time_between_bonus)
 	def update(self) :
 		self.scroll()
 		self.update_bonus()
-		self.generate_bonus()
+
+		if (time.time() - self.time_since_last_bonus > self.time_before_next_bonus) :
+			self.generate_bonus()
+			self.time_since_last_bonus = time.time()
+			self.time_before_next_bonus = expovariate(1 / self.average_time_between_bonus)
 
 
 	def generate_bonus(self) :
-		if(randint(0,100)>98) :      ##a modifier, genere les bonus 0.17 par tic
-			bonus = Bonus(GameConfig.bonus_spawn_X, GameConfig.bonus_spawn_ymin, GameConfig.bonus_spawn_ymax, 3, self, self.window)
-			self.all_bonus.append(bonus)
+		      ##a modifier, genere les bonus 0.17 par tic
+		bonus = Bonus(GameConfig.bonus_spawn_X, GameConfig.bonus_spawn_ymin, GameConfig.bonus_spawn_ymax, 3, self, self.window)
+		self.all_bonus.append(bonus)
 
 	def update_bonus(self) :
 		for i in self.all_bonus :
