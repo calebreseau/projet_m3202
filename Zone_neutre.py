@@ -39,4 +39,4 @@ class Zone_neutre :
 		if x1 > imageX + 2*image_step :
 			imageX+=image_step
 	def draw(self) :
-		window.blit(image,(imageX,y1))
+		window.blit(self.image,(self.imageX,self.y1))
