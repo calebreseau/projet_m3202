@@ -1,19 +1,20 @@
+from random import *
 class Zone_neutre :
-	def __init__ (self,X1,Y1,X2,Y2,img,img_step,Window) :
+	
+	def __init__ (self,X1,Y1,X2,Y2,img_step,Window) :
 		x1 = X1
 		y1 = Y1
 		x2 = X2
 		y2 = Y2
 		imageX = X1
-		image = img
 		image_step = img_step
 		speed = 1
-		image = pygame.image.load('xxx.png')
+		image = pygame.image.load('img/tapis_roulant.png')
 		window = Window
 
+		all_bonus.array(Bonus[50])
 
-		all_bonus[]
-	def update :
+	def update(self) :
 		scroll()
 		update_bonus(speed)
 		generate_bonus()
@@ -29,9 +30,9 @@ class Zone_neutre :
 			all_bonus[i].update()
 			if i.X < x1 :
 				all_bonus[i] = null
-	def scroll :
+	def scroll(self) :
 		imageX-=speed
 		if x1 > imageX + 2*image_step :
 			imageX+=image_step
-	def draw :
+	def draw(self) :
 		window.blit(image,(imageX,y1))

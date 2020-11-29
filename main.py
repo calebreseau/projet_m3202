@@ -2,9 +2,11 @@ import pygame
 from GameState import *
 from game_config import *
 from Player import *
+from Zone_neutre import *
+from Bonus import *
 
 
-def game_loop(window):
+def game_loop(window):   ## ici ajouter aussi en lien avec game config un ecran de menu et un ecran de choix des personnages
     quitting=False
     while not quitting:
         for event in pygame.event.get():
@@ -12,7 +14,7 @@ def game_loop(window):
                 quitting = True
     tx=0
     ty=0
-    game_state=GameState(tx,ty)
+    game_state=GameState(tx,ty,window)
     game_state.draw(window)
 
 def kb_input():
@@ -25,7 +27,7 @@ def kb_input():
             if event.key == pygame.K_RIGHT:
                 players[0].stepRight()
 
-def main():
+def main():   
     pygame.init()
     window = pygame.display.set_mode((GameConfig.WINDOW_W,GameConfig.WINDOW_H))
     pygame.display.set_caption("Projet M3202")
