@@ -27,8 +27,8 @@ class GameState:   ## ajouter les differents ecrans possibles
         if keys[pygame.K_RIGHT]:
             self.players[0].stepRight()
     def update(self) :
-        zone.update()
-        players[1].update()
+        #zone.update()
+        self.players[1].update()
                 
     def draw(self,window):
         background = pygame.Surface((800,600))

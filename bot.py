@@ -22,6 +22,6 @@ class Bot(Player):
 
     def update(self):
         if self.ennemy.rect.x>self.rect.x:
-            stepRight()
+            self.stepRight()
         else:
-            stepLeft()
+            self.stepLeft()
