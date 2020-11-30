@@ -56,7 +56,7 @@ def main():
         ('Joueur (Gauche,Droite,Haut) contre Joueur(Q,D,Z)',1),
         ('2 Humains (G,D,H) et (Q,D,Z) contre 2 IA',2),
         ('2 Equipes de 1 Humain et 1 IA',3),
-        ('2v2 en solo (G,D,H',4)
+        ('2v2 en solo (G,D,H)',4)
         ], onchange=setgametype)
     menu.add_selector('Difficulté des IA :', 
         [('Facile',0),('Normal',1),('Difficile',2)], onchange=setiadiff)
