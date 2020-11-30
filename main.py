@@ -25,18 +25,23 @@ def game_loop(window):   ## ici ajouter aussi en lien avec game config un ecran 
 
 
 def setgametype(value, args):
-    print(str(value))
     GameConfig.players=GameConfig.playerstemplates[value[1]]
+
+def setiadiff(value,args):
+    GameConfig.bot_ticks_de_reflexion=tdrs[value]
 
 def start_game():
     game_loop(window)
 def main():   
     pygame.display.set_caption("Projet M3202")
     setgametype((None,0),None)
+    setiadiff((None,1),None)
     menu = pygame_menu.Menu(GameConfig.WINDOW_H, GameConfig.WINDOW_W, 'Projet M3202', theme=pygame_menu.themes.THEME_DARK)
     menu.add_selector('Partie :', 
         [('Joueur (Gauche,Droite,Haut) contre IA',0),
         ('Joueur (Gauche,Droite,Haut) contre Joueur(Q,D,Z)',1)], onchange=setgametype)
+    menu.add_selector('Difficulté des IA :', 
+        [('Facile',0),('Normal',1),('Difficile',2)], onchange=setiadiff)
     #self.playeroptions=self.menu.add_selector('Type :', [('Pas en jeu', GameConfig.tpNone), ('Humain',GameConfig.tpHuman), ('IA', GameConfig.tpAI)], onchange=setplayertype)
     menu.add_button('Play', start_game)
     menu.add_button('Quit', pygame_menu.events.EXIT)
