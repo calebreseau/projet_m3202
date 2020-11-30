@@ -21,12 +21,8 @@ class Team:
         player.vy=self.vy
         self.players.append(player)
 
-    def update_players(self,ennemyteam):
+    def update_players(self,ennemyteam,bonuses):
         for player in self.players:
-            if player.update==player.update_human:
-                player.update()
-            else:
-                player.update(ennemyteam.players)
-            player.update_collisions(ennemyteam.players)
+                player.update(bonuses,ennemyteam.players)
 
 

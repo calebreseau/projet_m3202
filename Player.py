@@ -1,12 +1,17 @@
 import pygame
 from game_config import *
 from Projectile import *
+from Bonus import *
 
 class Player(pygame.sprite.Sprite):    # player doit aussi posseder un set de vies (autre classe) et au moin une methode de tir.
     
+    def assign(self,player):
+        self=player
+
     def init_base(self,window):
         
         pygame.sprite.Sprite.__init__(self)
+        self.effects=[]
         self.xlimit1=GameConfig.zonex1
         self.xlimit2=GameConfig.zonex2
         
@@ -21,13 +26,11 @@ class Player(pygame.sprite.Sprite):    # player doit aussi posseder un set de vi
         self.texture=pygame.Surface((GameConfig.PLAYER_W,GameConfig.PLAYER_H))
         pygame.draw.rect(self.texture,(80,80,80),(0,0,GameConfig.PLAYER_W,GameConfig.PLAYER_H))
         self.window=window
-        self.update=self.update_bot
 
     def init_human(self,kleft,kright,kshoot):
         self.kleft=kleft
         self.kright=kright
         self.kshoot=kshoot
-        self.update=self.update_human
 
 
     def __init__(self,window,kleft=None,kright=None,kshoot=None):
@@ -40,7 +43,8 @@ class Player(pygame.sprite.Sprite):    # player doit aussi posseder un set de vi
     
     def heal(self,power):
         self.health+=power
-
+        if self.health>self.maxhealth:
+            self.health=self.maxhealth
     def shoot(self):
         if self.shoot_timer>self.shoot_cooldown:
             self.shoot_timer=0
@@ -54,16 +58,33 @@ class Player(pygame.sprite.Sprite):    # player doit aussi posseder un set de vi
     def stepRight(self):
         self.rect.x+=self.speed
 
+    def add_effect(self,_effect):
+        effect=_effect
+        effect.setPlayer(self)
+        self.effects.append(effect)
+
     def update_projs(self):
         for proj in self.projs:
             proj.update()
             if proj.isdead:
                 self.projs.remove(proj)
 
-    def update(self):
-        self=self
+    def update_effects(self):
+        for effect in self.effects:
+            if effect.isdead:
+                self.effects.remove(effect)
+            effect.update()
 
-    def update_human(self):
+    def update(self,bonuses,ennemies):
+        self.update_projs()
+        self.update_collisions(ennemies,bonuses)
+        self.update_effects()
+        self.shoot_timer+=1
+        self.draw()
+        self.update_spec(ennemies)
+        
+
+    def update_spec(self,ennemies):
         keys = pygame.key.get_pressed()  #checking pressed keys
         if keys[self.kleft]:
             self.stepLeft()
@@ -71,27 +92,18 @@ class Player(pygame.sprite.Sprite):    # player doit aussi posseder un set de vi
             self.stepRight()
         if keys[self.kshoot]:
             self.shoot()
-        self.update_projs()
-        self.shoot_timer+=1
-        self.draw()
 
-    def update_bot(self,ennemies):
-        ennemy=ennemies[0]
-        if ennemy.rect.x>self.rect.x:
-            self.stepRight()
-        else:
-            self.stepLeft()
-        self.draw()
 
-    def update_collisions(self,ennemies):
+    def update_collisions(self,ennemies,bonuses):
             for proj in self.projs:
                 for ennemy in ennemies:
-                    print(str(ennemy.rect.x)+','+str(ennemy.rect.y))
                     if ennemy.rect.colliderect(proj.rect):
-                        print('collide')
                         ennemy.attack(GameConfig.proj_damage)
-                        print(str(ennemy.health))
                         self.projs.remove(proj)
+                for bonus in bonuses:
+                    if bonus.rect.colliderect(proj.rect):
+                        self.add_effect(bonus.effect)
+                        bonus.kill()
 
     def draw(self):
         healthtexture=self.texture
