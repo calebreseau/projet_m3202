@@ -30,7 +30,7 @@ class GameConfig:
     proj_damage=10
     player_vx=0
     player_vy=1
-    player_projspeed=20
+    player_projspeed=20.0
     player_maxhealth=100
     playerspeed = 5.0
 
@@ -54,7 +54,7 @@ class GameConfig:
     bonus_spawn_ymax = zoney2 - bonus_size
     bonus_average_time_between_bonus = 6
 
-    effecttypes=['EffetHeal','EffetReverse','EffetSlow']
+    effecttypes=['EffetHeal','EffetSnipe','EffetFastShoot','EffetSlow']
 
     hud_el_size=32
 
