@@ -23,13 +23,15 @@ class GameConfig:
     PLAYER_W = 64
     PLAYER_H = 64
     PROJ_SIZE=16
-    proj_lifetime=100
+    proj_lifetime=30
     proj_damage=10
     player_vx=0
     player_vy=1
     player_projspeed=20
     player_maxhealth=100
     playerspeed = 5
+
+    bot_ticks_de_reflexion = 15
 
     shoot_cooldown=75
 
