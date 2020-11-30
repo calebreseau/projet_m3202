@@ -4,6 +4,7 @@ from game_config import *
 
 class Bonus :
 	def __init__ (self,x,ymin,ymax,typeMax,Zone_neutre,Window) :
+		print('new bonus')
 		self.X = x
 		self.Y = normalvariate(300,60)
 		self.type = randint(0,typeMax)
@@ -14,9 +15,9 @@ class Bonus :
 
 	def update(self) :
 		self.speed = self.zone_neutre.speed
-		self.moove()
+		self.move()
 		
-	def moove(self) :
+	def move(self) :
 		self.X-=self.speed
 
 	def draw(self) : 
