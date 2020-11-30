@@ -17,7 +17,6 @@ class Bonus :
 		return inst
 
 	def __init__ (self,x,ymin,ymax,typeMax,Zone_neutre,Window) :
-		print('new bonus')
 		self.isDead=False
 		effID=randint(0,typeMax)
 		self.effectname=GameConfig.effecttypes[effID]

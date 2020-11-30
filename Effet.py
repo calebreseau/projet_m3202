@@ -29,7 +29,7 @@ class Effet:
                 self.apply_effect()
                 self.isApplied=True
                 self.timer=time.time()
-            print(str(round(1000*(time.time()-self.timer)))+','+str(self.cooldown))  
+           # print(str(round(1000*(time.time()-self.timer)))+','+str(self.cooldown))  
             if round(1000*(time.time()-self.timer))>self.cooldown:
                 self.kill()
 

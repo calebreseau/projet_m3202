@@ -13,6 +13,8 @@ class Bot(Player):
     def update_spec(self, ennemies) :
         self.ennemies = ennemies
         self.est_menace()
+        print("lol")
+
     def moove_left(self) :
         self.vectorX = -self.speed
     def moove_right(self) :
