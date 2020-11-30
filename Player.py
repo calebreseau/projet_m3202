@@ -3,13 +3,13 @@ from game_config import *
 from Projectile import *
 
 class Player(pygame.sprite.Sprite):    # player doit aussi posseder un set de vies (autre classe) et au moin une methode de tir.
-    def __init__(self,kleft,kright,kshoot,window):
+    
+    def init_base(self,window):
+        
         pygame.sprite.Sprite.__init__(self)
         self.xlimit1=GameConfig.zonex1
         self.xlimit2=GameConfig.zonex2
-        self.kleft=kleft
-        self.kright=kright
-        self.kshoot=kshoot
+        
         self.shoot_cooldown=GameConfig.shoot_cooldown
         self.shoot_timer=0
         self.speed=GameConfig.playerspeed
@@ -20,17 +20,26 @@ class Player(pygame.sprite.Sprite):    # player doit aussi posseder un set de vi
         self.vx=GameConfig.player_vx
         self.texture=pygame.Surface((GameConfig.PLAYER_W,GameConfig.PLAYER_H))
         pygame.draw.rect(self.texture,(80,80,80),(0,0,GameConfig.PLAYER_W,GameConfig.PLAYER_H))
-        self.init_specs()
         self.window=window
+        self.update=self.update_bot
+
+    def init_human(self,kleft,kright,kshoot):
+        self.kleft=kleft
+        self.kright=kright
+        self.kshoot=kshoot
+        self.update=self.update_human
+
+
+    def __init__(self,window,kleft=None,kright=None,kshoot=None):
+        self.init_base(window)
+        if (kleft!=None and kright!=None and kshoot!=None):
+            self.init_human(kleft,kright,kshoot)
 
     def attack(self,power):
         self.health-=power
     
     def heal(self,power):
         self.health+=power
-
-    def init_specs(self):
-        self=self
 
     def shoot(self):
         if self.shoot_timer>self.shoot_cooldown:
@@ -52,6 +61,9 @@ class Player(pygame.sprite.Sprite):    # player doit aussi posseder un set de vi
                 self.projs.remove(proj)
 
     def update(self):
+        self=self
+
+    def update_human(self):
         keys = pygame.key.get_pressed()  #checking pressed keys
         if keys[self.kleft]:
             self.stepLeft()
@@ -62,6 +74,24 @@ class Player(pygame.sprite.Sprite):    # player doit aussi posseder un set de vi
         self.update_projs()
         self.shoot_timer+=1
         self.draw()
+
+    def update_bot(self,ennemies):
+        ennemy=ennemies[0]
+        if ennemy.rect.x>self.rect.x:
+            self.stepRight()
+        else:
+            self.stepLeft()
+        self.draw()
+
+    def update_collisions(self,ennemies):
+            for proj in self.projs:
+                for ennemy in ennemies:
+                    print(str(ennemy.rect.x)+','+str(ennemy.rect.y))
+                    if ennemy.rect.colliderect(proj.rect):
+                        print('collide')
+                        ennemy.attack(GameConfig.proj_damage)
+                        print(str(ennemy.health))
+                        self.projs.remove(proj)
 
     def draw(self):
         healthtexture=self.texture
