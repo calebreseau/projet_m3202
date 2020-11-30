@@ -31,7 +31,7 @@ class GameConfig:
     player_maxhealth=100
     playerspeed = 5
 
-    bot_ticks_de_reflexion = 15
+    bot_ticks_de_reflexion = 20
 
     shoot_cooldown=75
 
