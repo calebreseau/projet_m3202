@@ -5,8 +5,6 @@ class Bot(Player):
 
     def __init__ (self,window) :
         super().__init__(window)
-        self.est_en_joue = False
-        self.est_menace = False
         self.vectorX = 0
         self.tick = 0
 
@@ -53,7 +51,7 @@ class Bot(Player):
             position_bullet = self.get_position_on_tic([bullet.rect.x, bullet.rect.y], [bullet.VX,bullet.VY], bullet.speed)
             position_self = self.get_position_on_tic([self.rect.x, self.rect.y], [self.vectorX,self.rect.y], self.speed)
             position_relatives.append(position_bullet - position_self)
-        for positions in positions_relatives :
+        for position in positions_relatives :
            if (position[1] < GameConfig.PLAYER_H) and (position[1] > GameConfig.player_H):
                 if(position[0] < GameConfig.PLAYER_W) and (position[0] > 0) :
                     return True
