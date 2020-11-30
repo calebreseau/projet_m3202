@@ -70,7 +70,9 @@ class Player(pygame.sprite.Sprite):    # player doit aussi posseder un set de vi
                 self.projs.remove(proj)
 
     def update_effects(self):
+        i=0
         for effect in self.effects:
+            i+=1
             if effect.isdead:
                 self.effects.remove(effect)
             effect.update()

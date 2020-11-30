@@ -4,6 +4,7 @@ from game_config import *
 from Player import *
 from EffetHeal import *
 from EffetReverse import *
+from EffetSlow import *
 import sys
 
 class Bonus :

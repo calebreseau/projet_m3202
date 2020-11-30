@@ -1,6 +1,7 @@
 from Player import *
 from game_config import *
 import time
+import inspect
 
 class Effet:
     
@@ -24,6 +25,8 @@ class Effet:
         self.timer=0
 
     def update(self):
+        if self.isdead==True: 
+            return
         if self.player != None:
             if self.isApplied==False:
                 self.apply_effect()
