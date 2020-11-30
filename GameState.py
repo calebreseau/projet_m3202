@@ -66,6 +66,6 @@ class GameState:   ## ajouter les differents ecrans possibles
         #self.update_collisions()
                 
     def draw(self):
-        background = pygame.Surface((800,600))
+        background = pygame.Surface((GameConfig.WINDOW_W,GameConfig.WINDOW_H))
         pygame.draw.rect(background,(0,0,0),(0,0,GameConfig.WINDOW_W,GameConfig.WINDOW_H))
         self.window.blit(background,(0,0))

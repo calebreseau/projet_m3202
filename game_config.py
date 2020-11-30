@@ -3,18 +3,21 @@ import pygame
 class GameConfig:
    ## doit aussi contenir toutes les positions de depart des 6 différents joueurs pottentiels.
    ## doit contenir les variables par default des reglages ( 1 perso contre 1 PC )
-    WINDOW_W = 800
+    WINDOW_W = 1200
     WINDOW_H = 600
 
 
-    tpHuman = 0
-    tpAI = 1
+    tpNone = 0
+    tpHuman = 1
+    tpAI = 2
 
     TeamDown = 0
-    TeamUp = 1
-
-    players=[[tpHuman,pygame.K_LEFT,pygame.K_RIGHT,pygame.K_UP,TeamDown],[tpAI,TeamUp]] #joueur vs IA
-    #players=[[tpHuman,pygame.K_LEFT,pygame.K_RIGHT,pygame.K_UP,TeamDown],[tpHuman,pygame.K_q,pygame.K_d,pygame.K_z,TeamUp]] #joueur vs joueur
+    TeamUp = 1  
+    
+    players_bot=[[tpHuman,pygame.K_LEFT,pygame.K_RIGHT,pygame.K_UP,TeamDown],[tpAI,TeamUp]] #joueur vs IA
+    players_humans=[[tpHuman,pygame.K_LEFT,pygame.K_RIGHT,pygame.K_UP,TeamDown],[tpHuman,pygame.K_q,pygame.K_d,pygame.K_z,TeamUp]] #joueur vs joueur
+    playerstemplates=[players_bot,players_humans]
+    players=[]
     zonex1 = 0
     zonex2 = WINDOW_W*2
     zoney1 = 150
