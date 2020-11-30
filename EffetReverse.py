@@ -9,6 +9,15 @@ class EffetReverse(Effet):
         self.cooldown=5000
 
     def apply_effect(self):
-        tmp=self.player.kleft
-        self.player.kleft=self.player.kright
-        self.player.kright=tmp
+        for player in self.player.ennemies:
+            if player.kleft!=None:
+                self.kright=player.kright
+                self.kleft=player.kleft
+                player.kleft=self.kright
+                player.kright=self.kleft
+    
+    def restore_player(self):
+        for player in self.player.ennemies:
+            if player.kleft!=None:
+                player.kleft=self.kleft
+                player.kright=self.kright

@@ -11,5 +11,8 @@ class EffetHeal(Effet):
         self.cooldown=500
 
     def apply_effect(self):
-        self.defplayer.heal(20)
+        self.player.heal(20)
+
+    def restore_player(self):
+        pass
 

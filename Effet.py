@@ -5,10 +5,13 @@ import time
 class Effet:
     
     def apply_effect(self):
-        self=self
+        pass
+
+    def restore_player(self):
+        pass
 
     def kill(self):
-        self.player.assign(self.defplayer)
+        self.restore_player()
         self.isdead=True
 
     def __init__(self):
@@ -17,8 +20,7 @@ class Effet:
         self.player=None
 
     def setPlayer(self,player):
-        self.defplayer=player
-        self.player=defplayer
+        self.player=player
         self.timer=0
 
     def update(self):

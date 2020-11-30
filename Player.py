@@ -76,6 +76,8 @@ class Player(pygame.sprite.Sprite):    # player doit aussi posseder un set de vi
             effect.update()
 
     def update(self,bonuses,ennemies):
+        self.ennemies=ennemies
+        self.bonuses=bonuses
         self.update_projs()
         self.update_collisions(ennemies,bonuses)
         self.update_effects()
