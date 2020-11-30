@@ -12,14 +12,13 @@ class Effet:
         self.isdead=True
 
     def __init__(self):
-        print('new effect')
         self.isApplied=False
         self.isdead=False
         self.player=None
 
     def setPlayer(self,player):
         self.defplayer=player
-        self.player=player
+        self.player=defplayer
         self.timer=0
 
     def update(self):
