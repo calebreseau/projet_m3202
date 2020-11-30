@@ -11,18 +11,18 @@ class Bot(Player):
     def update_spec(self, ennemies) :
         self.ennemies = ennemies
         self.est_menace()
-        self.moove()
+        self.move()
 
-    def moove_left(self) :
+    def move_left(self) :
         self.vectorX = -self.speed
-    def moove_right(self) :
+    def move_right(self) :
         self.vectorX = self.speed
     def stop(self) :
         self.vectorX = 0
-    def moove(self) :
+    def move(self) :
         self.rect.x += self.vectorX
        
-    def get_position_on_tic(self, pos, vector, tick) :
+    def get_position_on_tick(self, pos, vector, tick) :
         return [pos[0] + vector[0] * tick, pos[1] + vector[1] * tick]
 
 #    def get_bullet_relative_trajectory(self,bullet) :
@@ -49,8 +49,8 @@ class Bot(Player):
     def simulation(self,bullet) :
         self.positions_relatives = []
         for i in range(GameConfig.bot_ticks_de_reflexion) :
-            position_bullet = self.get_position_on_tic([bullet.rect.x, bullet.rect.y], [bullet.VX,bullet.VY] * bullet.speed,i)
-            position_self = self.get_position_on_tic([self.rect.x, self.rect.y], [self.vectorX,self.rect.y],i)
+            position_bullet = self.get_position_on_tick([bullet.rect.x, bullet.rect.y], [bullet.VX,bullet.VY] * bullet.speed,i)
+            position_self = self.get_position_on_tick([self.rect.x, self.rect.y], [self.vectorX,self.rect.y],i)
             self.positions_relatives.append((position_bullet[0] - position_self[0], position_bullet[1] - position_self[1]))
         
         for position in self.positions_relatives :
