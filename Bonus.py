@@ -10,7 +10,6 @@ class Bonus :
 		self.type = randint(0,typeMax)
 		self.zone_neutre = Zone_neutre
 		self.window = Window
-		
 		self.image=pygame.Surface((GameConfig.bonus_size,GameConfig.bonus_size))
 		pygame.draw.rect(self.image,(0,233,0),(0,0,GameConfig.bonus_size,GameConfig.bonus_size))
 
@@ -20,5 +19,6 @@ class Bonus :
 		
 	def move(self) :
 		self.X-=self.speed
+
 	def draw(self) : 
 		self.window.blit(self.image,(self.X,self.Y))
