@@ -111,6 +111,7 @@ class Player(pygame.sprite.Sprite):    # player doit aussi posseder un set de vi
                     if bonus.rect.colliderect(proj.rect):
                         self.add_effect(bonus.effect)
                         bonus.kill()
+                        self.projs.remove(proj)
 
     def draw(self):
         healthtexture=self.texture
