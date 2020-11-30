@@ -7,7 +7,7 @@ class Projectile(pygame.sprite.Sprite) :
         self.isdead=False
         self.window=window
         self.lifetime=0
-        self.rect=pygame.Rect(player.rect.x,player.rect.y,Size,Size)
+        self.rect=pygame.Rect(player.rect.x+GameConfig.PLAYER_W/2-GameConfig.PROJ_SIZE/2,player.rect.y,Size,Size)
         self.VX = vx
         self.VY = vy
         self.size = Size

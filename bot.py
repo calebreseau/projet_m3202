@@ -20,7 +20,10 @@ class Bot(Player):
     def stop(self) :
         self.vectorX = 0
     def move(self) :
-        self.rect.x += self.vectorX
+        if self.vectorX>0:
+            self.stepRight()
+        if self.vectorX<0:
+            self.stepLeft()
        
     def get_position_on_tick(self, pos, vector, tick) :
         return [pos[0] + vector[0] * tick, pos[1] + vector[1] * tick]

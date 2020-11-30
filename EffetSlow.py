@@ -5,7 +5,8 @@ class EffetSlow(Effet):
     def __init__(self):
         super().__init__()
         self.image=pygame.Surface((GameConfig.bonus_size,GameConfig.bonus_size))
-        pygame.draw.rect(self.image,(255,255,0),(0,0,GameConfig.bonus_size,GameConfig.bonus_size))
+        self.color=(255,255,0)
+        pygame.draw.rect(self.image,self.color,(0,0,GameConfig.bonus_size,GameConfig.bonus_size))
         self.cooldown=5000
 
     def apply_effect(self):

@@ -32,6 +32,7 @@ class Effet:
                 self.apply_effect()
                 self.isApplied=True
                 self.timer=time.time() 
+            self.lifepercentage=round(1000*(time.time()-self.timer))/self.cooldown
             if round(1000*(time.time()-self.timer))>self.cooldown:
                 self.kill()
 

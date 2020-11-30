@@ -9,7 +9,6 @@ import sys
 
 class Bonus :
 
-
 	def create_effect(self):
 		name=self.effectname
 		mod=sys.modules[name]
