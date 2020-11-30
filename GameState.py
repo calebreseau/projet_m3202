@@ -16,7 +16,7 @@ class GameState:   ## ajouter les differents ecrans possibles
         player=Bot(0,0,0,window)
         self.players.append(player)
 
-        self.zone = Zone_neutre(GameConfig.zonex1,GameConfig.zoney1,GameConfig.zonex2,GameConfig.zoney2,87,window)
+        self.zone = Zone_neutre(GameConfig.zonex1,GameConfig.zoney1,GameConfig.zonex2,GameConfig.zoney2,(GameConfig.zonex2/10)*2,window)
 
     def draw_sprites(self,window):
         for player in self.players:

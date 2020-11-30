@@ -4,8 +4,9 @@ class GameConfig:
     WINDOW_W = 800
     WINDOW_H = 600
 
+    players=((0,))
     zonex1 = 0
-    zonex2 = WINDOW_W
+    zonex2 = WINDOW_W*2
     zoney1 = 150
     zoney2 = 300
 
@@ -16,27 +17,27 @@ class GameConfig:
     proj_damage=10
     player_vx=0
     player_vy=1
-    player_projspeed=5
+    player_projspeed=20
     player_maxhealth=100
     playerspeed = 5
 
-    shoot_cooldown=20
+    shoot_cooldown=75
 
     player_xspawn=300
     
     playerup_color=(0,0,255)
     playerup_vy=1
-    playerup_yspawn=zoney1-PLAYER_H
+    playerup_yspawn=zoney1-PLAYER_H*2
     
     playerdown_color=(255,0,0)
     playerdown_vy=-1
-    playerdown_yspawn=zoney1+zoney2
+    playerdown_yspawn=zoney1+zoney2+PLAYER_H
 
     bonus_size = 46
     bonus_spawn_X = WINDOW_W + bonus_size
     bonus_spawn_ymin = zoney1 + bonus_size
     bonus_spawn_ymax = zoney2 - bonus_size
-    bonus_average_time_between_bonus = 7
+    bonus_average_time_between_bonus = 6
 
 
 

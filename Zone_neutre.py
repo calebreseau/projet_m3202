@@ -17,7 +17,15 @@ class Zone_neutre :
 		self.speed = 1
 		#image = pygame.image.load('img/tapis_roulant.png')
 		self.image=pygame.Surface((self.x2,self.y2))
-		pygame.draw.rect(self.image,(75,90,80),(0,0,self.x2,self.y2))
+		#pygame.draw.rect(self.image,(75,90,80),(0,0,self.x2,self.y2))
+		color=(30,30,30)
+		for i in range(round(self.x2/10)):
+			pygame.draw.rect(self.image,color,(round(i*(self.x2/10)),0,round(self.x2/10),self.x2))
+			if color==(75,75,75):
+				color=(30,30,30)
+			else:
+				color=(75,75,75)
+		
 		self.window = Window
 
 		self.all_bonus = []
