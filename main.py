@@ -32,7 +32,7 @@ def start_game():
     game_loop(window)
 def main():   
     pygame.display.set_caption("Projet M3202")
-
+    setgametype((None,0),None)
     menu = pygame_menu.Menu(GameConfig.WINDOW_H, GameConfig.WINDOW_W, 'Projet M3202', theme=pygame_menu.themes.THEME_DARK)
     menu.add_selector('Partie :', 
         [('Joueur (Gauche,Droite,Haut) contre IA',0),
