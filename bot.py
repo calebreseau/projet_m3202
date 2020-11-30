@@ -10,7 +10,7 @@ class Bot(Player):
         self.vectorX = 0
         self.tick = 0
 
-    def update(self, ennemies) :
+    def update_spec(self, ennemies) :
         self.ennemies = ennemies
         self.est_menace()
     def moove_left(self) :
