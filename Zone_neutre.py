@@ -32,7 +32,7 @@ class Zone_neutre :
 		self.time_since_last_bonus = time.time()
 		self.average_time_between_bonus = GameConfig.bonus_average_time_between_bonus
 		self.time_before_next_bonus = expovariate(1 / self.average_time_between_bonus)
-
+		
 	def update(self) :
 		self.scroll()
 		self.update_bonus()

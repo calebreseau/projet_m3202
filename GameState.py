@@ -39,6 +39,8 @@ class GameState:   ## ajouter les differents ecrans possibles
 
         self.zone = Zone_neutre(GameConfig.zonex1,GameConfig.zoney1,GameConfig.zonex2,GameConfig.zoney2,(GameConfig.zonex2/10)*2,window)
 
+        
+
     def draw_sprites(self,window):
         for player in self.players:
             window.blit(player.texture, (player.rect.x,player.rect.y))
