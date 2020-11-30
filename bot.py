@@ -25,13 +25,13 @@ class Bot(Player):
         self.vectorX = 0
     def moove(self) :
         if(self.vectorX<0) :
-            if(self.rect.x-100>self.xlimitleft) :
+            if(self.rect.x + self.vectorX>self.xlimitleft) :
                 self.stepLeft()
             else :
                 self.moove_right()
             
         if(self.vectorX>0) :
-            if(self.rect.x+100<self.xlimitright) :
+            if(self.rect.x++ self.vectorX + GameConfig.PLAYER_W<self.xlimitright) :
                 self.stepRight()
             else :
                 self.moove_left()
@@ -100,5 +100,8 @@ class Bot(Player):
                 if(self.simulation(bullet)) :
                     return True
         return False
+
+
+    def on_aim(self,player, target)
 
         
