@@ -11,7 +11,7 @@ class Bot(Player):
     def update_spec(self, ennemies) :
         self.ennemies = ennemies
         self.est_menace()
-        print("lol")
+        self.moove()
 
     def moove_left(self) :
         self.vectorX = -self.speed
@@ -19,9 +19,11 @@ class Bot(Player):
         self.vectorX = self.speed
     def stop(self) :
         self.vectorX = 0
+    def moove(self) :
+        self.rect.x += self.vectorX
        
-    def get_position_on_tic(self, pos, vector, speed) :
-        return pos + vector * speed * i
+    def get_position_on_tic(self, pos, vector, tick) :
+        return [pos[0] + vector[0] * tick, pos[1] + vector[1] * tick]
 
 #    def get_bullet_relative_trajectory(self,bullet) :
 #        trajectory_function_min = [bullet.speed, bullet.rect.x]
@@ -40,21 +42,23 @@ class Bot(Player):
    # 
     def est_menace(self) :
         for ennemy in self.ennemies :
-            
             for bullet in ennemy.projs :
                 if(self.simulation(bullet)) :
                    print("WAAAAAARNIIIIG")
     
     def simulation(self,bullet) :
-        positions_relatives = []
-        for i in range(20) :
-            position_bullet = self.get_position_on_tic([bullet.rect.x, bullet.rect.y], [bullet.VX,bullet.VY], bullet.speed)
-            position_self = self.get_position_on_tic([self.rect.x, self.rect.y], [self.vectorX,self.rect.y], self.speed)
-            position_relatives.append(position_bullet - position_self)
-        for position in positions_relatives :
-           if (position[1] < GameConfig.PLAYER_H) and (position[1] > GameConfig.player_H):
-                if(position[0] < GameConfig.PLAYER_W) and (position[0] > 0) :
-                    return True
+        self.positions_relatives = []
+        for i in range(GameConfig.bot_ticks_de_reflexion) :
+            position_bullet = self.get_position_on_tic([bullet.rect.x, bullet.rect.y], [bullet.VX,bullet.VY] * bullet.speed,i)
+            position_self = self.get_position_on_tic([self.rect.x, self.rect.y], [self.vectorX,self.rect.y],i)
+            self.positions_relatives.append((position_bullet[0] - position_self[0], position_bullet[1] - position_self[1]))
+        
+        for position in self.positions_relatives :
+           if (position[1] < GameConfig.PLAYER_H) and (position[1]+GameConfig.PROJ_SIZE > 0):
+              
+               if(position[0] < GameConfig.PLAYER_W) and (position[0]+GameConfig.PROJ_SIZE > 0) :
+                   return True
+        return False
 
 
         
