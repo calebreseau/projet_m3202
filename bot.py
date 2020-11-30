@@ -1,7 +1,7 @@
-from PlayerUp import *
+from Player import *
 from game_config import *
 
-class Bot(PlayerUp):
+class Bot(Player):
 
     def update(self,ennemies):
         ennemy=ennemies[0]
