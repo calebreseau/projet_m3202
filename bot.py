@@ -102,6 +102,7 @@ class Bot(Player):
         return False
 
 
-    def on_aim(self,player, target)
+    def on_aim(self,player, target):
+        pass
 
         
