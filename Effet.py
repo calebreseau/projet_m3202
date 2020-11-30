@@ -1,0 +1,35 @@
+from Player import *
+from game_config import *
+import time
+
+class Effet:
+    
+    def apply_effect(self):
+        self=self
+
+    def kill(self):
+        self.player.assign(self.defplayer)
+        self.isdead=True
+
+    def __init__(self):
+        print('new effect')
+        self.isApplied=False
+        self.isdead=False
+        self.player=None
+
+    def setPlayer(self,player):
+        self.defplayer=player
+        self.player=player
+        self.timer=0
+
+    def update(self):
+        if self.player != None:
+            if self.isApplied==False:
+                self.apply_effect()
+                self.isApplied=True
+                self.timer=time.time()
+            print(str(round(1000*(time.time()-self.timer)))+','+str(self.cooldown))  
+            if round(1000*(time.time()-self.timer))>self.cooldown:
+                self.kill()
+
+        

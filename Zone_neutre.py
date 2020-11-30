@@ -47,14 +47,17 @@ class Zone_neutre :
 
 	def generate_bonus(self) :
 		      ##a modifier, genere les bonus 0.17 par tic
-		bonus = Bonus(GameConfig.bonus_spawn_X, GameConfig.bonus_spawn_ymin, GameConfig.bonus_spawn_ymax, 3, self, self.window)
+		bonus = Bonus(GameConfig.bonus_spawn_X, GameConfig.bonus_spawn_ymin, GameConfig.bonus_spawn_ymax, len(GameConfig.effecttypes)-1, self, self.window)
 		self.all_bonus.append(bonus)
 
 	def update_bonus(self) :
 		for i in self.all_bonus :
 			i.update()
-			if i.X < self.x1 :
+			if i.rect.x < self.x1 :
+				i.kill()
+			if i.isDead:
 				self.all_bonus.remove(i)
+				
 	def scroll(self) :
 		self.imageX-=self.speed
 		if self.x1 > self.imageX + 2* self.image_step :

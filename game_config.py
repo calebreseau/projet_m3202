@@ -13,8 +13,8 @@ class GameConfig:
     TeamDown = 0
     TeamUp = 1
 
-    players=[[tpHuman,pygame.K_LEFT,pygame.K_RIGHT,pygame.K_UP,TeamDown],[tpAI,TeamUp]] #joueur vs IA
-    #players=[[tpHuman,pygame.K_LEFT,pygame.K_RIGHT,pygame.K_UP,TeamDown],[tpHuman,pygame.K_a,pygame.K_d,pygame.K_w,TeamUp]] #joueur vs joueur
+    #players=[[tpHuman,pygame.K_LEFT,pygame.K_RIGHT,pygame.K_UP,TeamDown],[tpAI,TeamUp]] #joueur vs IA
+    players=[[tpHuman,pygame.K_LEFT,pygame.K_RIGHT,pygame.K_UP,TeamDown],[tpHuman,pygame.K_a,pygame.K_d,pygame.K_w,TeamUp]] #joueur vs joueur
     zonex1 = 0
     zonex2 = WINDOW_W*2
     zoney1 = 150
@@ -48,6 +48,8 @@ class GameConfig:
     bonus_spawn_ymin = zoney1 + bonus_size
     bonus_spawn_ymax = zoney2 - bonus_size
     bonus_average_time_between_bonus = 6
+
+    effecttypes=['EffetHeal','EffetReverse']
 
 
 
