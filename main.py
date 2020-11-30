@@ -28,7 +28,7 @@ def setgametype(value, args):
     GameConfig.players=GameConfig.playerstemplates[value[1]]
 
 def setiadiff(value,args):
-    GameConfig.bot_ticks_de_reflexion=tdrs[value]
+    GameConfig.bot_ticks_de_reflexion=GameConfig.tdrs[value]
 
 def start_game():
     game_loop(window)
