@@ -7,20 +7,18 @@ from game_config import *
 
 class Zone_neutre :
 	
-	def __init__ (self,X1,Y1,X2,Y2,img_step,Window) :
+	def __init__ (self,X1,Y1,x2,y2,img_step,Window) :
 		self.x1 = X1
 		self.y1 = Y1
-		self.x2 = X2
-		self.y2 = Y2
 		self.imageX = X1
 		self.image_step = img_step
 		self.speed = 1
 		#image = pygame.image.load('img/tapis_roulant.png')
-		self.image=pygame.Surface((self.x2,self.y2))
+		self.image=pygame.Surface((x2,y2))
 		#pygame.draw.rect(self.image,(75,90,80),(0,0,self.x2,self.y2))
 		color=(30,30,30)
-		for i in range(round(self.x2/10)):
-			pygame.draw.rect(self.image,color,(round(i*(self.x2/10)),0,round(self.x2/10),self.x2))
+		for i in range(round(x2/10)):
+			pygame.draw.rect(self.image,color,(round(i*(x2/10)),0,round(x2/10),x2))
 			if color==(75,75,75):
 				color=(30,30,30)
 			else:

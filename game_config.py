@@ -14,7 +14,7 @@ class GameConfig:
     TeamUp = 1
 
     players=[[tpHuman,pygame.K_LEFT,pygame.K_RIGHT,pygame.K_UP,TeamDown],[tpAI,TeamUp]] #joueur vs IA
-    #players=[[tpHuman,pygame.K_LEFT,pygame.K_RIGHT,pygame.K_UP,TeamDown],[tpHuman,pygame.K_a,pygame.K_d,pygame.K_w,TeamUp]] #joueur vs joueur
+    #players=[[tpHuman,pygame.K_LEFT,pygame.K_RIGHT,pygame.K_UP,TeamDown],[tpHuman,pygame.K_q,pygame.K_d,pygame.K_z,TeamUp]] #joueur vs joueur
     zonex1 = 0
     zonex2 = WINDOW_W*2
     zoney1 = 150
@@ -29,7 +29,7 @@ class GameConfig:
     player_vy=1
     player_projspeed=20
     player_maxhealth=100
-    playerspeed = 5
+    playerspeed = 5.0
 
     bot_ticks_de_reflexion = 20
 
@@ -51,8 +51,8 @@ class GameConfig:
     bonus_spawn_ymax = zoney2 - bonus_size
     bonus_average_time_between_bonus = 6
 
-    effecttypes=['EffetHeal','EffetReverse']
+    effecttypes=['EffetHeal','EffetReverse','EffetSlow']
 
-
+    hud_el_size=32
 
      ### penser a charger ici l'integraliter des images une fois que pygame est lancé

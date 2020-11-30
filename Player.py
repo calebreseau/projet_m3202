@@ -12,9 +12,9 @@ class Player(pygame.sprite.Sprite):    # player doit aussi posseder un set de vi
         
         pygame.sprite.Sprite.__init__(self)
         self.effects=[]
-        self.xlimit1=GameConfig.zonex1
-        self.xlimit2=GameConfig.zonex2
-        
+        self.xlimitleft=GameConfig.zonex1
+        self.xlimitright=GameConfig.WINDOW_W-GameConfig.PLAYER_W
+        self.vrev=1
         self.shoot_cooldown=GameConfig.shoot_cooldown
         self.shoot_timer=0
         self.speed=GameConfig.playerspeed
@@ -53,10 +53,12 @@ class Player(pygame.sprite.Sprite):    # player doit aussi posseder un set de vi
             
 
     def stepLeft(self):
-        self.rect.x-=self.speed
+        if self.rect.x>self.xlimitleft:
+            self.rect.x-=self.speed*self.vrev
 
     def stepRight(self):
-        self.rect.x+=self.speed
+        if self.rect.x<self.xlimitright:
+            self.rect.x+=self.speed*self.vrev
 
     def add_effect(self,_effect):
         effect=_effect
@@ -70,7 +72,9 @@ class Player(pygame.sprite.Sprite):    # player doit aussi posseder un set de vi
                 self.projs.remove(proj)
 
     def update_effects(self):
+        i=0
         for effect in self.effects:
+            i+=1
             if effect.isdead:
                 self.effects.remove(effect)
             effect.update()
@@ -83,6 +87,7 @@ class Player(pygame.sprite.Sprite):    # player doit aussi posseder un set de vi
         self.update_effects()
         self.shoot_timer+=1
         self.draw()
+        self.draw_hud()
         self.update_spec(ennemies)
         
 
@@ -114,3 +119,12 @@ class Player(pygame.sprite.Sprite):    # player doit aussi posseder un set de vi
         pygame.draw.rect(healthtexture,(80,80,80),(healthwidth,0,GameConfig.PLAYER_W-healthwidth,GameConfig.PLAYER_H))
         #pygame.draw.rect(healthtexture,self.color,(0,0,32,GameConfig.PLAYER_H))
         self.window.blit(healthtexture,(self.rect.x,self.rect.y))
+
+    def draw_hud(self):
+        size=GameConfig.hud_el_size
+        for effect in self.effects:
+            lt_width=round(size*(1-effect.lifepercentage))
+            print(str(lt_width))
+            effect.image=pygame.Surface((GameConfig.bonus_size,GameConfig.bonus_size))
+            pygame.draw.rect(effect.image,effect.color,(0,0,lt_width,size))
+            self.window.blit(pygame.transform.scale(effect.image,(size,size)),(self.rect.x+64+size*(self.effects.index(effect)),self.rect.y+GameConfig.PLAYER_H/2))
