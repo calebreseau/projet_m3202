@@ -18,7 +18,7 @@ class Effet:
 
     def setPlayer(self,player):
         self.defplayer=player
-        self.player=player
+        self.player=defplayer
         self.timer=0
 
     def update(self):
