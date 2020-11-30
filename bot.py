@@ -24,12 +24,37 @@ class Bot(Player):
     def stop(self) :
         self.vectorX = 0
     def moove(self) :
-        self.rect.x += self.vectorX
-    def fuir(self) :
         if(self.vectorX<0) :
-            self.moove_left()
+            if(self.rect.x-100>self.xlimitleft) :
+                self.stepLeft()
+            else :
+                self.moove_right()
+            
+        if(self.vectorX>0) :
+            if(self.rect.x+100<self.xlimitright) :
+                self.stepRight()
+            else :
+                self.moove_left()
+        
+        
+    def fuir(self) :
+        if(self.vectorX==0) :
+            if(randint(0,1)==0) :
+
+                self.moove_left()
+            else :
+                self.moove_right()
         else :
-            self.moove_right()
+            if(self.vectorX>0) :
+                if(randint(0,1)==0) :
+                    self.moove_left()
+                else :
+                    self.stop
+            else :
+                if(randint(0,1)==0) :
+                    self.moove_right()
+                else :
+                    self.stop
             
         
     def get_position_on_tic(self, pos, vector, tick) :
