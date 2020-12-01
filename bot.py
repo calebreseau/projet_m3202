@@ -18,7 +18,7 @@ class Bot(Player):
         self.ennemies = ennemies
         self.en_danger = self.est_menace()
         if(not self.en_danger) :
-            if(randint(0,100 - GameConfig.bot_ticks_de_reflexion) == randint(0,100 - GameConfig.bot_ticks_de_reflexion) ) :
+            if(randint(0,100 - GameConfig.bot_ticks_de_reflexion * 10) == 0 ) :
                 self.fuir()   #deplacement aléatoire pour surprendre ladversaire en fonction de la difficulté de l'IA
 
         else :
@@ -30,7 +30,7 @@ class Bot(Player):
 
 
         if(self.has_a_target_on_a_bonus()) :
-            if(randint(0,20) <= GameConfig.tdrs.index(GameConfig.bot_ticks_de_reflexion)) :
+            if(randint(0,20) <= GameConfig.bot_ticks_de_reflexion) :
 
                 self.shoot()
 
