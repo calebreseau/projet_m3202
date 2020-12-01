@@ -20,5 +20,6 @@ class EffetStunned(Effet):
     def update(self):
         super().update()
         for player in self.player.ennemies:
-            player.vx=random.random()-0.5
+            if self.isdead==False:
+                player.vx=random.random()-0.5
 

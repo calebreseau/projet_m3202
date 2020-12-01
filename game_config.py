@@ -65,8 +65,7 @@ class GameConfig:
     bonus_times = [7,5,3]
     bonus_average_time_between_bonus = 6
 
-    effecttypes=['EffetHeal','EffetSnipe','EffetFastShoot','EffetSlow','EffetStunned','EffetFrenesie']
-   
+    effecttypes=['EffetHeal','EffetSnipe','EffetFastShoot','EffetSlow','EffetStunned','EffetFrenesie']  
     hud_el_size=32
 
      ### penser a charger ici l'integraliter des images une fois que pygame est lancé
