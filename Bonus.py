@@ -26,7 +26,7 @@ class Bonus :
 		self.effectname=GameConfig.effecttypes[effID]
 		self.effect = self.create_effect()
 		self.image=self.effect.image
-		Y = normalvariate((ymax+ymin)/2,(ymin-ymax)/6)
+		Y = normalvariate((ymax+ymin)/2+GameConfig.bonus_size,(ymin-ymax)/6)
 		self.rect=pygame.Rect(x,Y,GameConfig.bonus_size,GameConfig.bonus_size)
 
 		self.zone_neutre = Zone_neutre
