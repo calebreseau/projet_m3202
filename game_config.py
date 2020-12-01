@@ -16,7 +16,10 @@ class GameConfig:
     
     players_bot=[[tpHuman,pygame.K_LEFT,pygame.K_RIGHT,pygame.K_UP,TeamDown],[tpAI,TeamUp]] #joueur vs IA
     players_humans=[[tpHuman,pygame.K_LEFT,pygame.K_RIGHT,pygame.K_UP,TeamDown],[tpHuman,pygame.K_q,pygame.K_d,pygame.K_z,TeamUp]] #joueur vs joueur
-    playerstemplates=[players_bot,players_humans]
+    players_hvb=[[tpHuman,pygame.K_LEFT,pygame.K_RIGHT,pygame.K_UP,TeamDown],[tpHuman,pygame.K_q,pygame.K_d,pygame.K_z,TeamDown],[tpAI,TeamUp],[tpAI,TeamUp]]
+    players_hbvhb=[[tpHuman,pygame.K_LEFT,pygame.K_RIGHT,pygame.K_UP,TeamDown],[tpHuman,pygame.K_q,pygame.K_d,pygame.K_z,TeamUp],[tpAI,TeamUp],[tpAI,TeamDown]]
+    players_fullbot=[[tpHuman,pygame.K_LEFT,pygame.K_RIGHT,pygame.K_UP,TeamDown],[tpAI,TeamUp],[tpAI,TeamUp],[tpAI,TeamDown]]
+    playerstemplates=[players_bot,players_humans,players_hvb,players_hbvhb,players_fullbot]
     players=[]
     zonex1 = 0
     zonex2 = WINDOW_W*2
@@ -34,6 +37,7 @@ class GameConfig:
     player_maxhealth=100
     playerspeed = 5.0
 
+    tdrs=[10,20,30]
     bot_ticks_de_reflexion = 30
 
     shoot_cooldown=50

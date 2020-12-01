@@ -17,29 +17,52 @@ def game_loop(window):   ## ici ajouter aussi en lien avec game config un ecran 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 quitting = True
-        
-        game_state.update()
+        updresult=game_state.update()
+        if updresult!=3:
+            endmenu(updresult)
+            quitting=True
         pygame.time.delay(20)
         pygame.display.update()
 
 
-
+def endmenu(winnerteam):
+    menu = pygame_menu.Menu(GameConfig.WINDOW_H, GameConfig.WINDOW_W, 'Fin de partie!', theme=pygame_menu.themes.THEME_DARK)
+    if winnerteam==GameConfig.TeamUp:
+        winner='du bas'
+    elif winnerteam==GameConfig.TeamDown:
+        winner='du haut'
+    menu.add_label('Victoire de l\'équipe '+winner+'!')
+    #self.playeroptions=self.menu.add_selector('Type :', [('Pas en jeu', GameConfig.tpNone), ('Humain',GameConfig.tpHuman), ('IA', GameConfig.tpAI)], onchange=setplayertype)
+    menu.add_button('Rejouer', start_game)
+    menu.add_button('Aller au menu principal', main)
+    menu.add_button('Quitter', pygame_menu.events.EXIT)
+    menu.mainloop(window)
 def setgametype(value, args):
-    print(str(value))
     GameConfig.players=GameConfig.playerstemplates[value[1]]
+
+def setiadiff(value,args):
+    GameConfig.bot_ticks_de_reflexion=GameConfig.tdrs[value[1]]
 
 def start_game():
     game_loop(window)
+
 def main():   
     pygame.display.set_caption("Projet M3202")
     setgametype((None,0),None)
-    menu = pygame_menu.Menu(GameConfig.WINDOW_H, GameConfig.WINDOW_W, 'Projet M3202', theme=pygame_menu.themes.THEME_DARK)
+    setiadiff((None,0),None)
+    menu = pygame_menu.Menu(GameConfig.WINDOW_H, GameConfig.WINDOW_W, 'Projet M3202: Accueil', theme=pygame_menu.themes.THEME_DARK)
     menu.add_selector('Partie :', 
         [('Joueur (Gauche,Droite,Haut) contre IA',0),
-        ('Joueur (Gauche,Droite,Haut) contre Joueur(Q,D,Z)',1)], onchange=setgametype)
+        ('Joueur (Gauche,Droite,Haut) contre Joueur(Q,D,Z)',1),
+        ('2 Humains (G,D,H) et (Q,D,Z) contre 2 IA',2),
+        ('2 Equipes de 1 Humain et 1 IA',3),
+        ('2v2 en solo (G,D,H)',4)
+        ], onchange=setgametype)
+    menu.add_selector('Difficulté des IA :', 
+        [('Facile',0),('Normal',1),('Difficile',2)], onchange=setiadiff)
     #self.playeroptions=self.menu.add_selector('Type :', [('Pas en jeu', GameConfig.tpNone), ('Humain',GameConfig.tpHuman), ('IA', GameConfig.tpAI)], onchange=setplayertype)
-    menu.add_button('Play', start_game)
-    menu.add_button('Quit', pygame_menu.events.EXIT)
+    menu.add_button('Jouer', start_game)
+    menu.add_button('Quitter', pygame_menu.events.EXIT)
     menu.mainloop(window)
 
     pygame.quit()

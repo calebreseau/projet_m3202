@@ -55,8 +55,12 @@ class GameState:   ## ajouter les differents ecrans possibles
     def update(self) :
         self.draw()
         self.zone.update()
-        self.teamdown.update_players(self.teamup,self.zone.all_bonus)
-        self.teamup.update_players(self.teamdown,self.zone.all_bonus)
+        if self.teamdown.update_players(self.teamup,self.zone.all_bonus)==0:
+            return GameConfig.TeamDown
+        elif self.teamup.update_players(self.teamdown,self.zone.all_bonus)==0:
+            return GameConfig.TeamUp
+        else:
+            return 3
 
         #for player in self.players:
         #    if isinstance(player,Bot):

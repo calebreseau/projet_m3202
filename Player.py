@@ -89,6 +89,7 @@ class Player(pygame.sprite.Sprite):    # player doit aussi posseder un set de vi
         self.draw()
         self.draw_hud()
         self.update_spec(ennemies)
+        return self.health
         
 
     def update_spec(self,ennemies):
