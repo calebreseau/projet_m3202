@@ -112,11 +112,13 @@ class Player(pygame.sprite.Sprite):    # player doit aussi posseder un set de vi
                     if ennemy.rect.colliderect(proj.rect):
                         ennemy.attack(GameConfig.proj_damage)
                         self.projs.remove(proj)
+                        pass
                 for bonus in bonuses:
                     if bonus.rect.colliderect(proj.rect):
                         self.add_effect(bonus.effect)
                         bonus.kill()
                         self.projs.remove(proj)
+                        pass
 
     def draw(self):
         healthtexture=self.texture
@@ -130,7 +132,6 @@ class Player(pygame.sprite.Sprite):    # player doit aussi posseder un set de vi
         size=GameConfig.hud_el_size
         for effect in self.effects:
             lt_width=round(size*(1-effect.lifepercentage))
-            print(str(lt_width))
             effect.image=pygame.Surface((GameConfig.bonus_size,GameConfig.bonus_size))
             pygame.draw.rect(effect.image,effect.color,(0,0,lt_width,size))
             self.window.blit(pygame.transform.scale(effect.image,(size,size)),(self.rect.x+64+size*(self.effects.index(effect)),self.rect.y+GameConfig.PLAYER_H/2))

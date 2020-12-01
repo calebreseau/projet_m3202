@@ -23,7 +23,7 @@ class Bot(Player):
 
         else :
             self.fuir()
-        self.moove()
+        self.move()
 
         if(self.has_a_target_on_ennemy()) :
             self.shoot()
@@ -37,26 +37,26 @@ class Bot(Player):
 
 
 
-    def moove_left(self) :
+    def move_left(self) :
         self.vectorX = -self.speed
-    def moove_right(self) :
+    def move_right(self) :
         self.vectorX = self.speed
     def stop(self) :
         self.vectorX = 0
 
 
-    def moove(self) :
+    def move(self) :
         if(self.vectorX<0) :
             if(self.rect.x + self.vectorX>self.xlimitleft) :
                 self.stepLeft()
             else :
-                self.moove_right()
+                self.move_right()
             
         if(self.vectorX>0) :
             if(self.rect.x + self.vectorX + GameConfig.PLAYER_W<self.xlimitright) :
                 self.stepRight()
             else :
-                self.moove_left()
+                self.move_left()
 
         
         
@@ -64,24 +64,23 @@ class Bot(Player):
         if(self.vectorX==0) :
             if(randint(0,1)==0) :
 
-                self.moove_left()
+                self.move_left()
             else :
-                self.moove_right()
+                self.move_right()
         else :
             if(self.vectorX>0) :
                 if(randint(0,1)==0) :
-                    self.moove_left()
+                    self.move_left()
                 else :
                     self.stop
             else :
                 if(randint(0,1)==0) :
-                    self.moove_right()
+                    self.move_right()
                 else :
                     self.stop
             
         
     def get_position_on_tic(self, pos, vector, tick) :
-        #print([pos[0] + vector[0] * tick, pos[1] + vector[1] * tick])
         return [pos[0] + vector[0] * tick, pos[1] + vector[1] * tick]
 
 
@@ -107,7 +106,6 @@ class Bot(Player):
 
     def simulation(self,bullet) :
         tick_before_collision = self.tick_avant_collision([bullet.rect.x, bullet.rect.y],[bullet.VX * bullet.speed,bullet.VY * bullet.speed],GameConfig.PROJ_SIZE,[self.rect.x, self.rect.y],[self.vectorX,0],GameConfig.PLAYER_H)
-        print(tick_before_collision)
         if(tick_before_collision>0) and(tick_before_collision< GameConfig.bot_ticks_de_reflexion) :
             return True
         else :

@@ -43,6 +43,9 @@ def setgametype(value, args):
 def setiadiff(value,args):
     GameConfig.bot_ticks_de_reflexion=GameConfig.tdrs[value[1]]
 
+def setbonusfreq(value,args):
+    GameConfig.bonus_average_time_between_bonus=GameConfig.bonus_times[value[1]]
+
 def start_game():
     game_loop(window)
 
@@ -50,6 +53,7 @@ def main():
     pygame.display.set_caption("Projet M3202")
     setgametype((None,0),None)
     setiadiff((None,0),None)
+    setbonusfreq
     menu = pygame_menu.Menu(GameConfig.WINDOW_H, GameConfig.WINDOW_W, 'Projet M3202: Accueil', theme=pygame_menu.themes.THEME_DARK)
     menu.add_selector('Partie :', 
         [('Joueur (Gauche,Droite,Haut) contre IA',0),
@@ -60,7 +64,8 @@ def main():
         ], onchange=setgametype)
     menu.add_selector('Difficulté des IA :', 
         [('Facile',0),('Normal',1),('Difficile',2)], onchange=setiadiff)
-    #self.playeroptions=self.menu.add_selector('Type :', [('Pas en jeu', GameConfig.tpNone), ('Humain',GameConfig.tpHuman), ('IA', GameConfig.tpAI)], onchange=setplayertype)
+    menu.add_selector('Fréquence d\'apparition des bonus :', 
+        [('Petite',0),('Normale',1),('Elevée',2)], onchange=setbonusfreq)
     menu.add_button('Jouer', start_game)
     menu.add_button('Quitter', pygame_menu.events.EXIT)
     menu.mainloop(window)
