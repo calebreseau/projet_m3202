@@ -70,7 +70,8 @@ class GameConfig:
     hud_el_size=32
     
     pygame.font.init()
-    font=pygame.font.SysFont('Comic Sans MS', (round(bonus_size/6)))
+    bonusfont=pygame.font.SysFont('Comic Sans MS', (round(bonus_size/6)))
+    font=pygame.font.SysFont('Comic Sans MS', 20)
 
     delay_between_tick = 20
 

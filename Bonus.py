@@ -43,6 +43,6 @@ class Bonus :
 		self.rect.x-=self.speed
 
 	def draw(self) : 
-		textsurface=GameConfig.font.render(self.effectname.replace('Effet',''),False,(0,0,0))
+		textsurface=GameConfig.bonusfont.render(self.effectname.replace('Effet',''),False,(0,0,0))
 		self.window.blit(self.effect.image,(self.rect.x,self.rect.y))
 		self.window.blit(textsurface,(self.rect.x,int(self.rect.y+GameConfig.bonus_size/3)))
