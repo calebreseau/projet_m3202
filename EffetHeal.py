@@ -9,7 +9,7 @@ class EffetHeal(Effet):
         self.image=pygame.Surface((GameConfig.bonus_size,GameConfig.bonus_size))
         self.color=(255,0,0)
         pygame.draw.rect(self.image,self.color,(0,0,GameConfig.bonus_size,GameConfig.bonus_size))
-        self.cooldown=250
+        self.cooldown/=20
 
     def apply_effect(self):
         self.player.heal(20)

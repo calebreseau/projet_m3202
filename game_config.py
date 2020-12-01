@@ -66,6 +66,9 @@ class GameConfig:
     bonus_average_time_between_bonus = 6
 
     effecttypes=['EffetHeal','EffetSnipe','EffetFastShoot','EffetSlow','EffetStunned','EffetFrenesie']  
+    effect_defcooldown=5000
     hud_el_size=32
-
+    
+    pygame.font.init()
+    font=pygame.font.SysFont('Comic Sans MS', (round(bonus_size/6)))
      ### penser a charger ici l'integraliter des images une fois que pygame est lancé
