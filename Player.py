@@ -116,7 +116,7 @@ class Player(pygame.sprite.Sprite):    # player doit aussi posseder un set de vi
                 for bonus in bonuses:
                     if bonus.rect.colliderect(proj.rect):
                         self.add_effect(bonus.effect)
-                        bonus.kill()
+                        bonuses.remove(bonus)
                         self.projs.remove(proj)
                         break
 
