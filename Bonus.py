@@ -3,7 +3,6 @@ import pygame
 from game_config import *
 from Player import *
 from EffetHeal import *
-from EffetReverse import *
 from EffetSlow import *
 from EffetSnipe import *
 from EffetFastShoot import *
