@@ -22,10 +22,10 @@ def game_loop(window):   ## ici ajouter aussi en lien avec game config un ecran 
         if updresult!=3:
             endmenu(updresult)
             quitting=True
-        if(time_before_update_delay_time < 0) and (GameConfig.delay_between_tick>3) :
-
+        if(time_before_update_delay_time < 0) and (GameConfig.delay_between_tick>5) :   # acceleration du jeu
+            print(GameConfig.delay_between_tick)
             GameConfig.delay_between_tick -= 1
-            time_before_update_delay_time = GameConfig.bot_ticks_de_reflexion * 100
+            time_before_update_delay_time = GameConfig.bot_ticks_de_reflexion * 100     # en fonction de la difficulté
         else :
             time_before_update_delay_time-=1
         pygame.time.delay(GameConfig.delay_between_tick)
