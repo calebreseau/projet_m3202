@@ -3,6 +3,8 @@ import pygame
 class GameConfig:
    ## doit aussi contenir toutes les positions de depart des 6 différents joueurs pottentiels.
    ## doit contenir les variables par default des reglages ( 1 perso contre 1 PC )
+    GameName='Projet M3202'
+   
     WINDOW_W = 1200
     WINDOW_H = 600
 
@@ -18,8 +20,11 @@ class GameConfig:
     players_humans=[[tpHuman,pygame.K_LEFT,pygame.K_RIGHT,pygame.K_UP,TeamDown],[tpHuman,pygame.K_q,pygame.K_d,pygame.K_z,TeamUp]] #joueur vs joueur
     players_hvb=[[tpHuman,pygame.K_LEFT,pygame.K_RIGHT,pygame.K_UP,TeamDown],[tpHuman,pygame.K_q,pygame.K_d,pygame.K_z,TeamDown],[tpAI,TeamUp],[tpAI,TeamUp]]
     players_hbvhb=[[tpHuman,pygame.K_LEFT,pygame.K_RIGHT,pygame.K_UP,TeamDown],[tpHuman,pygame.K_q,pygame.K_d,pygame.K_z,TeamUp],[tpAI,TeamUp],[tpAI,TeamDown]]
-    players_fullbot=[[tpHuman,pygame.K_LEFT,pygame.K_RIGHT,pygame.K_UP,TeamDown],[tpAI,TeamUp],[tpAI,TeamUp],[tpAI,TeamDown]]
-    playerstemplates=[players_bot,players_humans,players_hvb,players_hbvhb,players_fullbot]
+    players_3bot=[[tpHuman,pygame.K_LEFT,pygame.K_RIGHT,pygame.K_UP,TeamDown],[tpAI,TeamUp],[tpAI,TeamUp],[tpAI,TeamDown]]
+    players_fullbots4=[[tpAI,TeamUp],[tpAI,TeamUp],[tpAI,TeamDown],[tpAI,TeamDown]]
+    players_fullbots2=[[tpAI,TeamUp],[tpAI,TeamDown]]
+    playerstemplates=[players_bot,players_humans,players_hvb,players_hbvhb,players_3bot,players_fullbots2,players_fullbots4]
+
     players=[]
     zonex1 = 0
     zonex2 = WINDOW_W*2
@@ -30,12 +35,12 @@ class GameConfig:
     PLAYER_H = 64
     PROJ_SIZE=16
     proj_lifetime=50
-    proj_damage=10
-    player_vx=0
-    player_vy=1
+    proj_damage=20
+    player_vx=0.0
+    player_vy=1.0
     player_projspeed=10.0
     player_maxhealth=100
-    playerspeed = 5.0
+    playerspeed = 4.0
 
     tdrs=[20,30,50]
     bot_ticks_de_reflexion = 30
@@ -59,7 +64,7 @@ class GameConfig:
     bonus_times = [7,5,3]
     bonus_average_time_between_bonus = 6
 
-    effecttypes=['EffetHeal','EffetSnipe','EffetFastShoot','EffetSlow']
+    effecttypes=['EffetHeal','EffetSnipe','EffetFastShoot','EffetSlow','EffetStunned']
 
     hud_el_size=32
 

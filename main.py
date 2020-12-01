@@ -37,7 +37,9 @@ def endmenu(winnerteam):
     menu.add_button('Aller au menu principal', main)
     menu.add_button('Quitter', pygame_menu.events.EXIT)
     menu.mainloop(window)
+    
 def setgametype(value, args):
+    pygame.display.set_caption(GameConfig.GameName+': '+str(value[0]))
     GameConfig.players=GameConfig.playerstemplates[value[1]]
 
 def setiadiff(value,args):
@@ -51,7 +53,7 @@ def start_game():
 
 def main():   
     pygame.display.set_caption("Projet M3202")
-    setgametype((None,0),None)
+    setgametype(('Joueur (Gauche,Droite,Haut) contre IA',0),None)
     setiadiff((None,0),None)
     setbonusfreq
     menu = pygame_menu.Menu(GameConfig.WINDOW_H, GameConfig.WINDOW_W, 'Projet M3202: Accueil', theme=pygame_menu.themes.THEME_DARK)
@@ -60,7 +62,9 @@ def main():
         ('Joueur (Gauche,Droite,Haut) contre Joueur(Q,D,Z)',1),
         ('2 Humains (G,D,H) et (Q,D,Z) contre 2 IA',2),
         ('2 Equipes de 1 Humain et 1 IA',3),
-        ('2v2 en solo (G,D,H)',4)
+        ('2v2 en solo (G,D,H)',4),
+        ('IA contre IA (1c1)',5),
+        ('IA contre IA (2c2)',6)
         ], onchange=setgametype)
     menu.add_selector('Difficulté des IA :', 
         [('Facile',0),('Normal',1),('Difficile',2)], onchange=setiadiff)

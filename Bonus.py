@@ -7,6 +7,7 @@ from EffetReverse import *
 from EffetSlow import *
 from EffetSnipe import *
 from EffetFastShoot import *
+from EffetStunned import *
 import sys
 
 class Bonus :

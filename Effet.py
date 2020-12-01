@@ -19,6 +19,7 @@ class Effet:
         self.isApplied=False
         self.isdead=False
         self.player=None
+        self.lifepercentage=1
 
     def setPlayer(self,player):
         self.player=player
