@@ -26,6 +26,7 @@ class Player(pygame.sprite.Sprite):    # player doit aussi posseder un set de vi
         self.texture=pygame.Surface((GameConfig.PLAYER_W,GameConfig.PLAYER_H))
         pygame.draw.rect(self.texture,(80,80,80),(0,0,GameConfig.PLAYER_W,GameConfig.PLAYER_H))
         self.window=window
+        self.directionX = 0
 
     def init_human(self,kleft,kright,kshoot):
         self.kleft=kleft
@@ -94,10 +95,13 @@ class Player(pygame.sprite.Sprite):    # player doit aussi posseder un set de vi
 
     def update_spec(self,ennemies):
         keys = pygame.key.get_pressed()  #checking pressed keys
+        self.directionX = 0
         if keys[self.kleft]:
             self.stepLeft()
+            self.directionX = -self.speed*self.vrev
         if keys[self.kright]:
             self.stepRight()
+            self.directionX = self.speed*self.vrev
         if keys[self.kshoot]:
             self.shoot()
 

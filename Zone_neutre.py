@@ -38,7 +38,7 @@ class Zone_neutre :
 		if(time.time() - self.time_since_last_bonus > self.time_before_next_bonus) :
 			self.generate_bonus()
 			self.time_since_last_bonus = time.time()
-			self.time_before_next_bonus = expovariate(1 / self.average_time_between_bonus)
+			self.time_before_next_bonus = 1 + expovariate(1 / self.average_time_between_bonus)
 
 		self.draw()
 

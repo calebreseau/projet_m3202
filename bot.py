@@ -17,7 +17,11 @@ class Bot(Player):
     def update_spec(self, ennemies) :
         self.ennemies = ennemies
         self.en_danger = self.est_menace()
-        if(self.en_danger) :
+        if(not self.en_danger) :
+            if(randint(0,100 - GameConfig.bot_ticks_de_reflexion) == randint(0,100 - GameConfig.bot_ticks_de_reflexion) ) :
+                self.fuir()   #deplacement aléatoire pour surprendre ladversaire en fonction de la difficulté de l'IA
+
+        else :
             self.fuir()
         self.moove()
 
@@ -26,7 +30,9 @@ class Bot(Player):
 
 
         if(self.has_a_target_on_a_bonus()) :
-            self.shoot()
+            if(randint(0,3) <= GameConfig.tdrs.index(GameConfig.bot_ticks_de_reflexion)) :
+
+                self.shoot()
 
 
 
@@ -37,6 +43,8 @@ class Bot(Player):
         self.vectorX = self.speed
     def stop(self) :
         self.vectorX = 0
+
+
     def moove(self) :
         if(self.vectorX<0) :
             if(self.rect.x + self.vectorX>self.xlimitleft) :
@@ -45,10 +53,11 @@ class Bot(Player):
                 self.moove_right()
             
         if(self.vectorX>0) :
-            if(self.rect.x++ self.vectorX + GameConfig.PLAYER_W<self.xlimitright) :
+            if(self.rect.x + self.vectorX + GameConfig.PLAYER_W<self.xlimitright) :
                 self.stepRight()
             else :
                 self.moove_left()
+
         
         
     def fuir(self) :
@@ -82,7 +91,7 @@ class Bot(Player):
 
         positions_relatives = []
 
-        for i in range(GameConfig.bot_ticks_de_reflexion) :
+        for i in range(70) :
             
             position_A = self.get_position_on_tic(posA, vectorA , i)
             
@@ -99,7 +108,7 @@ class Bot(Player):
     def simulation(self,bullet) :
         tick_before_collision = self.tick_avant_collision([bullet.rect.x, bullet.rect.y],[bullet.VX * bullet.speed,bullet.VY * bullet.speed],GameConfig.PROJ_SIZE,[self.rect.x, self.rect.y],[self.vectorX,0],GameConfig.PLAYER_H)
         print(tick_before_collision)
-        if(tick_before_collision>0) :
+        if(tick_before_collision>0) and(tick_before_collision< GameConfig.bot_ticks_de_reflexion) :
             return True
         else :
             return False
@@ -120,16 +129,20 @@ class Bot(Player):
 
     def has_a_target_on_a_bonus(self) :
         for bonus in self.bonuses :
-            tick_avant_impact = self.tick_avant_collision([self.rect.x, self.rect.y],[self.vx * self.projspeed,self.vy * self.projspeed],GameConfig.PROJ_SIZE,[bonus.rect.x, bonus.rect.y],[bonus.zone_neutre.speed*-1,0],GameConfig.bonus_size)
+            tick_avant_impact = self.tick_avant_collision([self.rect.x+GameConfig.PLAYER_W/2-GameConfig.PROJ_SIZE/2, self.rect.y+GameConfig.PLAYER_W],[self.vx * self.projspeed,self.vy * self.projspeed],GameConfig.PROJ_SIZE,[bonus.rect.x, bonus.rect.y],[bonus.zone_neutre.speed*-1,0],GameConfig.bonus_size)
             if(tick_avant_impact>0) :
                 return True
         return False
+
+
     def has_a_target_on_ennemy(self) :
         for ennemy in self.ennemies :
-            tick_avant_impact = self.tick_avant_collision([self.rect.x, self.rect.y],[self.vx * self.projspeed,self.vy * self.projspeed],GameConfig.PROJ_SIZE,[ennemy.rect.x, ennemy.rect.y],[ennemy.vx * ennemy.speed,0],GameConfig.PLAYER_W)
+
+
+
+            tick_avant_impact = self.tick_avant_collision([self.rect.x+GameConfig.PLAYER_W/2-GameConfig.PROJ_SIZE/2, self.rect.y+GameConfig.PLAYER_W],[self.vx * self.projspeed,self.vy * self.projspeed],GameConfig.PROJ_SIZE,[ennemy.rect.x, ennemy.rect.y],[ennemy.directionX,0],GameConfig.PLAYER_W)
             if(tick_avant_impact>0) :
                 return True
-                print("lol")
         return False
 
         
