@@ -18,7 +18,7 @@ class Bot(Player):
         self.ennemies = ennemies
         self.en_danger = self.est_menace()
         if(not self.en_danger) :
-            if(randint(0,100 - GameConfig.bot_ticks_de_reflexion) == randint(0,100 - GameConfig.bot_ticks_de_reflexion) ) :
+            if(randint(0,100 - GameConfig.bot_ticks_de_reflexion * 10) == 0 ) :
                 self.fuir()   #deplacement aléatoire pour surprendre ladversaire en fonction de la difficulté de l'IA
 
         else :
@@ -26,11 +26,12 @@ class Bot(Player):
         self.move()
 
         if(self.has_a_target_on_ennemy()) :
-            self.shoot()
+            if(randint(0,10) <= GameConfig.bot_ticks_de_reflexion) :
+                self.shoot()
 
 
         if(self.has_a_target_on_a_bonus()) :
-            if(randint(0,3) <= GameConfig.tdrs.index(GameConfig.bot_ticks_de_reflexion)) :
+            if(randint(0,20) <= GameConfig.bot_ticks_de_reflexion) :
 
                 self.shoot()
 
@@ -106,7 +107,7 @@ class Bot(Player):
 
     def simulation(self,bullet) :
         tick_before_collision = self.tick_avant_collision([bullet.rect.x, bullet.rect.y],[bullet.VX * bullet.speed,bullet.VY * bullet.speed],GameConfig.PROJ_SIZE,[self.rect.x, self.rect.y],[self.vectorX,0],GameConfig.PLAYER_H)
-        if(tick_before_collision>0) and(tick_before_collision< GameConfig.bot_ticks_de_reflexion) :
+        if(tick_before_collision>0) and(tick_before_collision< GameConfig.bot_ticks_de_reflexion * 8) :
             return True
         else :
             return False
