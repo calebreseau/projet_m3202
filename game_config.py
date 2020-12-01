@@ -69,4 +69,6 @@ class GameConfig:
    
     hud_el_size=32
 
+    delay_between_tick = 20
+
      ### penser a charger ici l'integraliter des images une fois que pygame est lancé
