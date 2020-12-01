@@ -71,4 +71,7 @@ class GameConfig:
     
     pygame.font.init()
     font=pygame.font.SysFont('Comic Sans MS', (round(bonus_size/6)))
+
+    delay_between_tick = 20
+
      ### penser a charger ici l'integraliter des images une fois que pygame est lancé

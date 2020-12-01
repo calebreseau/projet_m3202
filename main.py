@@ -13,6 +13,7 @@ def game_loop(window):   ## ici ajouter aussi en lien avec game config un ecran 
     tx=0
     ty=0
     game_state=GameState(tx,ty,window)
+    time_before_update_delay_time = GameConfig.bot_ticks_de_reflexion * 100
     while not quitting:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -21,7 +22,13 @@ def game_loop(window):   ## ici ajouter aussi en lien avec game config un ecran 
         if updresult!=3:
             endmenu(updresult)
             quitting=True
-        pygame.time.delay(20)
+        if(time_before_update_delay_time < 0) and (GameConfig.delay_between_tick>3) :
+
+            GameConfig.delay_between_tick -= 1
+            time_before_update_delay_time = GameConfig.bot_ticks_de_reflexion * 100
+        else :
+            time_before_update_delay_time-=1
+        pygame.time.delay(GameConfig.delay_between_tick)
         pygame.display.update()
 
 
@@ -37,10 +44,12 @@ def endmenu(winnerteam):
     menu.add_button('Aller au menu principal', main)
     menu.add_button('Quitter', pygame_menu.events.EXIT)
     menu.mainloop(window)
+
     
 def setgametype(value, args):
     pygame.display.set_caption(GameConfig.GameName+': '+str(value[0]))
     GameConfig.players=GameConfig.playerstemplates[value[1]]
+    
 
 def setiadiff(value,args):
     GameConfig.bot_ticks_de_reflexion=GameConfig.tdrs[value[1]]
@@ -49,6 +58,7 @@ def setbonusfreq(value,args):
     GameConfig.bonus_average_time_between_bonus=GameConfig.bonus_times[value[1]]
 
 def start_game():
+    GameConfig.delay_between_tick = 30 - GameConfig.bot_ticks_de_reflexion*5
     game_loop(window)
 
 def main():   
