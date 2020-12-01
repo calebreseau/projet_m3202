@@ -30,7 +30,7 @@ class Bot(Player):
 
 
         if(self.has_a_target_on_a_bonus()) :
-            if(randint(0,3) <= GameConfig.tdrs.index(GameConfig.bot_ticks_de_reflexion)) :
+            if(randint(0,20) <= GameConfig.tdrs.index(GameConfig.bot_ticks_de_reflexion)) :
 
                 self.shoot()
 
