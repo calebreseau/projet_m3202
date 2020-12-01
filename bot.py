@@ -10,12 +10,21 @@ class Bot(Player):
         self.tick = 0
         self.en_danger = False
         self.vectorX_states=[-1,0,1]
+
+
+
+
     def update_spec(self, ennemies) :
         self.ennemies = ennemies
         self.en_danger = self.est_menace()
         if(self.en_danger) :
             self.fuir()
         self.moove()
+        if(self.has_a_target_on_a_bonus()) :
+            self.shoot()
+
+
+
 
     def moove_left(self) :
         self.vectorX = -self.speed
@@ -102,6 +111,16 @@ class Bot(Player):
         return False
 
 
-    #def on_aim(self,player, target)
+
+
+    def has_a_target_on_a_bonus(self) :
+        for bonus in self.bonuses :
+            tick_avant_impact = self.tick_avant_collision([self.rect.x, self.rect.y],[self.vx * self.projspeed,self.vy * self.projspeed],GameConfig.PROJ_SIZE,[bonus.rect.x, bonus.rect.y],[bonus.zone_neutre.speed*-1,0],GameConfig.bonus_size)
+            if(tick_avant_impact>0) :
+                return True
+        return False
+    def has_a_target_on_enemy(self) :
+        return self.has_a_target_on(self.ennemies)
+
 
         
