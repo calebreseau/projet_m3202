@@ -65,9 +65,12 @@ class GameConfig:
     bonus_times = [7,5,3]
     bonus_average_time_between_bonus = 6
 
-    effecttypes=['EffetHeal','EffetSnipe','EffetFastShoot','EffetSlow','EffetStunned','EffetFrenesie']
-   
+    effecttypes=['EffetHeal','EffetSnipe','EffetFastShoot','EffetSlow','EffetStunned','EffetFrenesie']  
+    effect_defcooldown=5000
     hud_el_size=32
+    
+    pygame.font.init()
+    font=pygame.font.SysFont('Comic Sans MS', (round(bonus_size/6)))
 
     delay_between_tick = 20
 

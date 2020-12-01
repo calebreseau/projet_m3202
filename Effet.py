@@ -20,6 +20,7 @@ class Effet:
         self.isdead=False
         self.player=None
         self.lifepercentage=1
+        self.cooldown=GameConfig.effect_defcooldown
 
     def setPlayer(self,player):
         self.player=player

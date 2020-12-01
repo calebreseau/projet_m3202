@@ -1,7 +1,7 @@
-from EffetFastShoot import *
-from EffetStunned import *
+from Effet import *
+import random
 
-class EffetFrenesie(EffetFastShoot):
+class EffetFrenesie(Effet):
 
     def __init__(self):
         super().__init__()
@@ -10,7 +10,13 @@ class EffetFrenesie(EffetFastShoot):
         pygame.draw.rect(self.image,self.color,(0,0,GameConfig.bonus_size,GameConfig.bonus_size))
 
     def apply_effect(self):
-        super().apply_effect()
-        effect=EffetStunned()
-        effect.setPlayer(self.player.ennemies[0])
-        self.player.ennemies[0].effects.append(effect)
+        self.player.shoot_cooldown/=2
+
+    def restore_player(self):
+        self.player.vx=GameConfig.player_vx
+        self.player.shoot_cooldown*=2
+
+    def update(self):
+        super().update()
+        if self.isdead==False:
+            self.player.vx=random.random()-0.5
