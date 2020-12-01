@@ -10,10 +10,7 @@ class Bot(Player):
         self.tick = 0
         self.en_danger = False
         self.vectorX_states=[-1,0,1]
-
-
-
-
+    
     def update_spec(self, ennemies) :
         self.ennemies = ennemies
         self.en_danger = self.est_menace()
@@ -28,8 +25,7 @@ class Bot(Player):
         if(self.has_a_target_on_ennemy()) :
             if(randint(0,10) <= GameConfig.bot_ticks_de_reflexion) :
                 self.shoot()
-
-
+                
         if(self.has_a_target_on_a_bonus()) :
             if(randint(0,20) <= GameConfig.bot_ticks_de_reflexion) :
 

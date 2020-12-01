@@ -24,8 +24,8 @@ class GameConfig:
     players_fullbots4=[[tpAI,TeamUp],[tpAI,TeamUp],[tpAI,TeamDown],[tpAI,TeamDown]]
     players_fullbots2=[[tpAI,TeamUp],[tpAI,TeamDown]]
     playerstemplates=[players_bot,players_humans,players_hvb,players_hbvhb,players_3bot,players_fullbots2,players_fullbots4]
-
     players=[]
+    
     zonex1 = 0
     zonex2 = WINDOW_W*2
     zoney1 = 150
