@@ -20,6 +20,11 @@ class Bot(Player):
         if(self.en_danger) :
             self.fuir()
         self.moove()
+
+        if(self.has_a_target_on_ennemy()) :
+            self.shoot()
+
+
         if(self.has_a_target_on_a_bonus()) :
             self.shoot()
 
@@ -119,8 +124,12 @@ class Bot(Player):
             if(tick_avant_impact>0) :
                 return True
         return False
-    def has_a_target_on_enemy(self) :
-        return self.has_a_target_on(self.ennemies)
-
+    def has_a_target_on_ennemy(self) :
+        for ennemy in self.ennemies :
+            tick_avant_impact = self.tick_avant_collision([self.rect.x, self.rect.y],[self.vx * self.projspeed,self.vy * self.projspeed],GameConfig.PROJ_SIZE,[ennemy.rect.x, ennemy.rect.y],[ennemy.vx * ennemy.speed,0],GameConfig.PLAYER_W)
+            if(tick_avant_impact>0) :
+                return True
+                print("lol")
+        return False
 
         
