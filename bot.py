@@ -81,7 +81,6 @@ class Bot(Player):
             
         
     def get_position_on_tic(self, pos, vector, tick) :
-        #print([pos[0] + vector[0] * tick, pos[1] + vector[1] * tick])
         return [pos[0] + vector[0] * tick, pos[1] + vector[1] * tick]
 
 
@@ -107,7 +106,6 @@ class Bot(Player):
 
     def simulation(self,bullet) :
         tick_before_collision = self.tick_avant_collision([bullet.rect.x, bullet.rect.y],[bullet.VX * bullet.speed,bullet.VY * bullet.speed],GameConfig.PROJ_SIZE,[self.rect.x, self.rect.y],[self.vectorX,0],GameConfig.PLAYER_H)
-        print(tick_before_collision)
         if(tick_before_collision>0) and(tick_before_collision< GameConfig.bot_ticks_de_reflexion) :
             return True
         else :
