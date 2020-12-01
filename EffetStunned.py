@@ -14,7 +14,8 @@ class EffetStunned(Effet):
         pass
     
     def restore_player(self):
-        self.player.vx=GameConfig.player_vx
+        for player in self.player.ennemies:
+            self.player.vx=GameConfig.player_vx
 
     def update(self):
         super().update()
