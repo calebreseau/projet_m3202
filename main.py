@@ -13,7 +13,8 @@ def game_loop(window):   ## ici ajouter aussi en lien avec game config un ecran 
     tx=0
     ty=0
     game_state=GameState(tx,ty,window)
-    time_before_update_delay_time = GameConfig.bot_ticks_de_reflexion * 100
+    time_before_update_delay_time = GameConfig.bot_ticks_de_reflexion * 50
+    GameConfig.delay_between_tick = 40 - GameConfig.bot_ticks_de_reflexion * 10
     while not quitting:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -22,7 +23,7 @@ def game_loop(window):   ## ici ajouter aussi en lien avec game config un ecran 
         if updresult!=3:
             endmenu(updresult)
             quitting=True
-        if(time_before_update_delay_time < 0) and (GameConfig.delay_between_tick>5) :   # acceleration du jeu
+        if(time_before_update_delay_time < 0) and (GameConfig.delay_between_tick>(6 - GameConfig.bot_ticks_de_reflexion)*2) :   # acceleration du jeu
             print(GameConfig.delay_between_tick)
             GameConfig.delay_between_tick -= 1
             time_before_update_delay_time = GameConfig.bot_ticks_de_reflexion * 100     # en fonction de la difficulté
