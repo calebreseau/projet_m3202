@@ -40,7 +40,7 @@ class GameConfig:
     tdrs=[20,30,50]
     bot_ticks_de_reflexion = 30
 
-    shoot_cooldown=10
+    shoot_cooldown=20
 
     player_xspawn=300
     
@@ -56,6 +56,7 @@ class GameConfig:
     bonus_spawn_X = WINDOW_W + bonus_size
     bonus_spawn_ymin = zoney1 + bonus_size
     bonus_spawn_ymax = zoney2 - bonus_size
+    bonus_times = [7,5,3]
     bonus_average_time_between_bonus = 6
 
     effecttypes=['EffetHeal','EffetSnipe','EffetFastShoot','EffetSlow']
