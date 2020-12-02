@@ -124,7 +124,7 @@ class Bot(Player):
 
     def has_a_target_on_a_bonus(self) :
         for bonus in self.bonuses :
-            tick_avant_impact = self.tick_avant_collision([self.rect.x+GameConfig.PLAYER_W/2-GameConfig.PROJ_SIZE/2, self.rect.y+GameConfig.PLAYER_W],[self.vx * self.projspeed,self.vy * self.projspeed],GameConfig.PROJ_SIZE,[bonus.rect.x, bonus.rect.y],[bonus.zone_neutre.speed*-1,0],GameConfig.bonus_size)
+            tick_avant_impact = self.tick_avant_collision([self.rect.x+GameConfig.PLAYER_W/2-GameConfig.PROJ_SIZE/2, self.rect.y+GameConfig.PLAYER_W],[self.vx * self.projspeed,GameConfig.player_vy * self.projspeed],GameConfig.PROJ_SIZE,[bonus.rect.x, bonus.rect.y],[bonus.zone_neutre.speed*-1,0],GameConfig.bonus_size)
             if(tick_avant_impact>0) :
                 return True
         return False
@@ -135,7 +135,7 @@ class Bot(Player):
 
 
 
-            tick_avant_impact = self.tick_avant_collision([self.rect.x+GameConfig.PLAYER_W/2-GameConfig.PROJ_SIZE/2, self.rect.y+GameConfig.PLAYER_W],[self.vx * self.projspeed,self.vy * self.projspeed],GameConfig.PROJ_SIZE,[ennemy.rect.x, ennemy.rect.y],[ennemy.directionX,0],GameConfig.PLAYER_W)
+            tick_avant_impact = self.tick_avant_collision([self.rect.x+GameConfig.PLAYER_W/2-GameConfig.PROJ_SIZE/2, self.rect.y+GameConfig.PLAYER_W],[self.vx * self.projspeed,GameConfig.player_vy * self.projspeed],GameConfig.PROJ_SIZE,[ennemy.rect.x, ennemy.rect.y],[ennemy.directionX,0],GameConfig.PLAYER_W)
             if(tick_avant_impact>0) :
                 return True
         return False
